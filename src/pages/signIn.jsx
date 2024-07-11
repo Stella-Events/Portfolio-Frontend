@@ -2,10 +2,17 @@ import Logbac from "../assets/images/logbac.jpg"
 import facebook from "../assets/images/facebook.png"
 import insta from "../assets/images/insta.png"
 import twitter from "../assets/images/twitter.png"
+import { useForm } from "react-hook-form";
 
 
 
 const Signin = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data)
+  };
+
   return (
     <div>
       <div className="h-[700px] w-max-full bg-[#f8f8fa] flex flex-col items-center justify-center gap-8 bg-[url('./assets/images/logbac.jpg')] bg-cover bg-center">
@@ -14,7 +21,7 @@ const Signin = () => {
 
           <h4 className="text-4xl font-bold">Sign In</h4>
           <div>
-            <form className="w-[300px] mx-auto p-4">
+            <form className="w-[300px] mx-auto p-4" onSubmit={handleSubmit(onSubmit)}> 
 
               <div className="mb-8">
                 {/* USERNAME */}
@@ -23,14 +30,19 @@ const Signin = () => {
                   className="text-gray-500 text-2 mb-1 mr-0">
 
                 </label>
-                username
+                Username
                 <input
                   type="name"
                   id="name"
                   name="name"
-                  className="h-9 bg-[#f1f1f1] w-full mt-2 border-2  rounded-lg"
-                  placeholder="input username..." />
+                  className="h-9 bg-[#f1f1f1] w-full mt-2 border-2  rounded-lg pl-3" 
+                  {
+                    ...register("username", {required: "Username is required"})
+                  }
+                  placeholder="Input Username..." />
+                  {errors.username && (<p className="text-red-500">{errors.username.message}</p>)}
               </div>
+              
 
               <div className="mb-8">
                 {/* PASSWORD */}
@@ -39,13 +51,17 @@ const Signin = () => {
                   className="text-gray-500 text-2 mb-1 mr-0">
 
                 </label>
-                 password
+                 Password
                 <input
-                  type="name"
-                  id="name"
-                  name="name"
-                  className="h-9 bg-[#f1f1f1] w-full mt-2 rounded-lg"
-                  placeholder="input password..." />
+                  type="password"
+                  id="password"
+                  name="password"
+                  className="h-9 bg-[#f1f1f1] w-full mt-2 rounded-lg pl-3"
+                  {
+                    ...register("password", {required: "Password is required", minLength: 8})
+                  }
+                  placeholder="Input Password..." />
+                  {errors.password && (<p className="text-red-500">{errors.password.message}</p>)}
               </div>
 
               <div>
