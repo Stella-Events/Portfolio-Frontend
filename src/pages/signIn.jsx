@@ -3,14 +3,25 @@ import facebook from "../assets/images/facebook.png"
 import insta from "../assets/images/insta.png"
 import twitter from "../assets/images/twitter.png"
 import { useForm } from "react-hook-form";
+import { apiLogin } from "../services/auth";
 
 
 
 const Signin = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data)
+    try {
+      const res = await apiLogin({
+        email: data.email, 
+        password: data.password
+      });
+      console.log("First", res)
+      // console.log("Second: I got called"); 
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
