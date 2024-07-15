@@ -5,5 +5,6 @@ const baseUrl = import.meta.env.VITE_BASE_URL;
 
 export const apiClients = axios.create(
     {
-        baseURL: baseUrl,    }
-)
+        baseURL: baseUrl, 
+        // withCredentials: (true)   
+    });
