@@ -20,12 +20,10 @@ const Signin = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    //isSubmitting = true
     setIsSubmitting(true);
 
     try {
       const res = await apiLogin({
-        // email: data.email, 
         userName: data.username,
         password: data.password
       });
@@ -33,9 +31,7 @@ const Signin = () => {
       //redirect user to dashboard
       navigate("/dashboard")
 
-      //isSubmitting = false
-      setIsSubmitting(false)
-      // console.log("Second: I got called"); 
+   
     }
     catch (error) {
       console.log(error);
