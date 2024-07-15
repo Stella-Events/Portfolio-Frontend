@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Portfolio from "./pages/portfolio"
+
 import SignUp from "./pages/signUp"
 import Signin from "./pages/signIn"
 import Landing from "./pages/landing"
@@ -11,6 +11,14 @@ import Home from "./pages/dashboard/pages/home"
 import Contact from "./pages/dashboard/pages/contact"
 import Skills from "./pages/dashboard/pages/skills"
 import Achievements from "./pages/dashboard/pages/achievements"
+import PortfolioLayout from "./pages/portfolio/layout"
+import Welcome from "./pages/portfolio/pages/welcome"
+import Profile from "./pages/portfolio/pages/profile"
+import Education from "./pages/portfolio/pages/education"
+import Achievement from "./pages/portfolio/pages/achievement"
+import Projectss from "./pages/portfolio/pages/projectss"
+import Volunteering from "./pages/portfolio/pages/volunteering"
+import Skillss from "./pages/portfolio/pages/skillss"
 
 
 const router = createBrowserRouter([
@@ -25,7 +33,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>
+        element: <Home />
       },
       {
         path: "about-me",
@@ -37,24 +45,60 @@ const router = createBrowserRouter([
       },
       {
         path: "skills",
-        element: <Skills/>
+        element: <Skills />
       },
       {
         path: "projects",
-        element: <Projects />
+        element: <Projects/>
       },
       {
         path: "achievements",
-        element: <Achievements/>
+        element: <Achievements />
       },
       {
         path: "contact",
-        element: <Contact/>
+        element: <Contact />
       },
     ]
   },
 
-  { path: "/portfolio", element: <Portfolio /> },
+
+
+  
+  {
+    path: "/portfolio", element: <PortfolioLayout/>,
+    children: [
+      {
+        index: true,
+        element: <Welcome/>
+      },
+      {
+        path: "profile",
+        element: <Profile/>
+      },
+      {
+        path: "education",
+        element: <Education/>
+      },
+      {
+        path: "achievements",
+        element: <Achievement/>
+      },
+      {
+        path: "skillss",
+        element: <Skillss/>
+      },
+      {
+        path: "projectss",
+        element: <Projectss/>
+      },
+      {
+        path: "Volunteering",
+        element: <Volunteering/>
+      },
+    ]
+  },
+
 ])
 
 
