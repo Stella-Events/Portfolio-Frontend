@@ -68,6 +68,17 @@ const SignUp = () => {
             </div>
 
             <div className="flex flex-col">
+              <label htmlFor="otherNames" className="text-lg font-medium py-2">Other Names</label>
+              <input
+                type="text"
+                id="otherNames"
+                className="p-2 border border-gray-300 rounded"
+                placeholder="Enter your other names"
+                {...register("otherNames")}
+              />
+            </div>
+
+            <div className="flex flex-col">
               <label htmlFor="email" className="text-lg font-medium">Email</label>
               <input
                 type="email"
@@ -127,6 +138,15 @@ const SignUp = () => {
               <span>Sign Up</span>
             </button>
           </form>
+          <div className="flex items-center mt-5">
+              <input
+                type="checkbox"
+                id="termsAndConditions"
+                className="mr-2"
+                {...register("termsAndConditions", { required: "You must accept the terms and conditions" })}
+              />
+  <label htmlFor="terms" className="font-light text-black">I accept the <Link className="font-medium text-primary-600 hover:underline " to="#">Terms and Conditions</Link> </label>            </div>
+            {errors.termsAndConditions && <p className="text-red-500">{errors.termsAndConditions.message}</p>}
         </div>
       </div>
     </div>
