@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Portfolio from "./pages/portfolio"
+
 import SignUp from "./pages/signUp"
 import Signin from "./pages/signIn"
 import Landing from "./pages/landing"
@@ -14,6 +14,15 @@ import Overview from "./pages/dashboard/pages/overview"
 import AddProfile from "./pages/dashboard/pages/addProfile"
 import AddSkills from "./pages/dashboard/pages/addSkills"
 import Experiences from "./pages/dashboard/pages/experiences"
+import PortfolioLayout from "./pages/portfolio/layout"
+import PortfolioWelcome from "./pages/portfolio/pages/welcome"
+import PortfolioProfile from "./pages/portfolio/pages/profile"
+import PortfolioEducation from "./pages/portfolio/pages/education"
+import PortfolioAchievement from "./pages/portfolio/pages/achievement"
+import PortfolioProjects from "./pages/portfolio/pages/projectss"
+import PortfolioVolunteering from "./pages/portfolio/pages/volunteering"
+import PortfolioSkills from "./pages/portfolio/pages/skillss"
+
 
 
 const router = createBrowserRouter([
@@ -28,7 +37,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>
+        element: <Home />
       },
       {
         path: "overview",
@@ -49,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path: "skills",
-        element: <Skills/>
+        element: <Skills />
       },
       {
         path: "skills/add-skill",
@@ -57,20 +66,56 @@ const router = createBrowserRouter([
       },
       {
         path: "projects",
-        element: <Projects />
+        element: <Projects/>
       },
       {
         path: "achievements",
-        element: <Achievements/>
+        element: <Achievements />
       },
       {
         path: "contact",
-        element: <Contact/>
+        element: <Contact />
       },
     ]
   },
 
-  { path: "/portfolio", element: <Portfolio /> },
+
+
+  
+  {
+    path: "/portfolio", element: <PortfolioLayout/>,
+    children: [
+      {
+        index: true,
+        element: <Welcome/>
+      },
+      {
+        path: "profile",
+        element: <PortfolioProfile/>
+      },
+      {
+        path: "education",
+        element: <PortfolioEducation/>
+      },
+      {
+        path: "achievements",
+        element: <PortfolioAchievement/>
+      },
+      {
+        path: "skillss",
+        element: <PortfolioSkills/>
+      },
+      {
+        path: "projectss",
+        element: <PortfolioProjects/>
+      },
+      {
+        path: "Volunteering",
+        element: <PortfolioVolunteering/>
+      },
+    ]
+  },
+
 ])
 
 
