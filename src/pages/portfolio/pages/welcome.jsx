@@ -1,9 +1,13 @@
-import React from 'react'
+
+import HomeCard from "../components/homeCard"
+import dummyOne from ".././../../assets/images/dummyOne.jpg"
+
+
 
 const Welcome = () => {
   return (
     <div className="bg-[url('./assets/images/northlights.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
-       <div className="flex justify-center">
+      <div className="flex justify-center">
         <div className="h-[900px] w-[1050px] bg-black/80 mr-20 ml-10 mt-20 rounded-2xl">
           {/* FIRST TWO LINES */}
           <div className="gap-y-12">
@@ -15,11 +19,14 @@ const Welcome = () => {
               <span className="text-white text-2xl font-bold">HOME TO TOP PROGRAMMERS AROUND THE WORLD</span>
               <span className="font-bold text-1xl text-orange-600">E X P L O R E</span>
             </div>
+            <div>
+              <HomeCard profpic={dummyOne}/>
+            </div>
           </div>
         </div>
       </div>
-      <div className="text-white font-bold mt-6 animate-bounce text-end mr-16 italic"> PoweredBy StellaPortfolio</div>
-        
+      <div className="text-white font-bold mt-6 animate-bounce text-end mr-16 italic"> PoweredBy PortfolioHive</div>
+
     </div>
   )
 }
