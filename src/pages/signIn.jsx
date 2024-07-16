@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { apiLogin } from "../services/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FallingLines } from "react-loader-spinner";
+import {toast} from "react-toastify"
 
 
 
@@ -13,7 +15,7 @@ const Signin = () => {
   // Let isSubmitting = false;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate()
-  
+
   console.log(isSubmitting)
 
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,8 +32,12 @@ const Signin = () => {
         password: data.password
       });
       console.log("Response: ", res.data)
-      //redirect user to dashboard
+      toast.success(res.data)
+      setTimeout(() =>{
+        //redirect user to dashboard
       navigate("/dashboard")
+      }, 8000)
+      
 
       //isSubmitting = false
       setIsSubmitting(false)
@@ -39,7 +45,8 @@ const Signin = () => {
     }
     catch (error) {
       console.log(error);
-      setIsSubmitting
+      toast.error(error);
+      setIsSubmitting 
     }
     finally {
       setIsSubmitting(false);
@@ -104,7 +111,12 @@ const Signin = () => {
                   <input
                     type="submit" value="SignIn" className="h-9 bg-[#7848f4] w-40 text-white rounded-lg" placeholder="Create Event">
                   </input>
-                  {isSubmitting ? "Loading..." : "Login"}
+                  {isSubmitting ? <FallingLines
+                    color="#4fa94d"
+                    width="100"
+                    visible={true}
+                    ariaLabel="falling-circles-loading"
+                  /> : "Login"}
                 </button>
               </div>
             </form>
