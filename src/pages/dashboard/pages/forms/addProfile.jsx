@@ -127,7 +127,7 @@ const AddProfile = () => {
         </div>
         <button
           type="submit"
-          className="w-full py-3 bg-primary text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
+          className="w-full py-3 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
         >
           Add Profile
         </button>

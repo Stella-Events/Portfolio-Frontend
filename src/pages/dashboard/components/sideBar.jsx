@@ -5,7 +5,7 @@ import K from "./constants/index";
 
 const SideBar = () => {
   return (
-    <div className="h-screen w-[300px] bg-[#2C3E50] flex flex-col px-8 py-5 shadow-md ">
+    <div className="h-screen w-[300px] bg-aColor flex flex-col px-8 py-5 shadow-md fixed">
       <div>
         <span className="text-white text-2xl font-bold text-center">
         Portfolio <span className="text-secondary">Hive</span>
@@ -19,7 +19,7 @@ const SideBar = () => {
             className="group relative flex items-center gap-x-4 text-white hover:text-white transition-all duration-300"
           >
             <motion.div
-              className="bg-secondary p-2 rounded-full flex items-center justify-center w-9 h-9 group-hover:bg-white transition-all duration-500"
+              className="bg-secondary p-2 rounded-full flex items-center justify-center w-8 h-7 group-hover:bg-white transition-all duration-500"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -37,6 +37,9 @@ const SideBar = () => {
             </motion.span>
           </Link>
         ))}
+      </div>
+      <div>
+        
       </div>
       <div className="mt-auto">
         <motion.button

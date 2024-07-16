@@ -4,7 +4,7 @@ const DashboardLayout = () => {
     return (
         <div className="flex ">
             <SideBar />
-            <Outlet />
+            <div className="pl-[300px] w-full"><Outlet /></div>
         </div>
     )
 }

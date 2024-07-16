@@ -1,14 +1,13 @@
 import PagesLayout from "../layout/pagesLayout";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import K from "../../dashboard/components/constants";
 
 const Projects = () => {
+  const navigate = useNavigate();
+
   return (
-    <PagesLayout 
-      headerText="Projects" 
-      buttonText="Add New Project" 
-      onClick={() => navigate("/dashboard/project/add-project")}
-    >
+    <PagesLayout headerText="Projects" buttonText="Add New Project" onClick={() => navigate("/dashboard/projects/add-project")} >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {K.PROJECTS.map(({ projectName, description, technologies, githubLink, imageUrl }, index) => (
           <div
