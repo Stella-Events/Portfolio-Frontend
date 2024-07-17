@@ -5,11 +5,15 @@ import { useEffect, useState } from "react";
 import { apiCheckUsernameExists, apiSignup } from "../services/auth";
 import { toast } from "react-toastify"
 import { FallingLines } from "react-loader-spinner";
+import Loader from "../components/loader";
+import { debounce } from "lodash";
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameAvailable, setUsernameAvailable] = useState(false)
   const [usernameNotAvailable, setUsernameNotAvailable] = useState(false)
+  const [isUsernameLoading, setIsUsernameLoading] = useState(false)
+  
 
   const navigate = useNavigate()
   const {
@@ -19,36 +23,47 @@ const SignUp = () => {
     formState: { errors }
   } = useForm();
 
-  const checkUserName = async () => {
+  const checkUserName = async (username) => {
+    console.log("I've been called");
+    setIsUsernameLoading
     try {
       const res = await apiCheckUsernameExists(username)
       console.log(res.data)
       const user = res.data.user;
       if (user) {
-        setUsernameNotAvailable(true)
-      } else {
-        setUsernameAvailable(true)
-      }
-      if (user) {
-
-      } else {
+        setUsernameNotAvailable(true);
+        setUsernameAvailable(false);
 
       }
+
+      else {
+        setUsernameAvailable(true);
+        setUsernameNotAvailable(false);
+      }
+
     } catch (error) {
       console.log(error)
-
+    }
+    finally {
+      isUsernameLoading(false);
     }
   };
-
-
 
   const userNameWatch = watch("username");
   console.log(userNameWatch);
 
   useEffect(() => {
-    if (userNameWatch) {
-      checkUserName(userNameWatch)
-    }
+        const debouncedSearch  = debounce (async() => {
+          if (userNameWatch) {
+           await checkUserName(userNameWatch)
+          }
+        }, 1000)
+
+        debouncedSearch();
+        return ()=>{
+          debouncedSearch.cancel();
+        }
+  
   }, [userNameWatch])
 
 
@@ -60,10 +75,10 @@ const SignUp = () => {
     let payload = {
       firstName: data.firstName,
       lastName: data.lastName,
-      userName: data.username,
+      username: data.username,
       email: data.email,
       password: data.password,
-      confirmedPassword: data.confirmPassword,
+      confirmPassword: data.confirmPassword,
     }
     if (data.otherNames) {
       payload = { ...payload, otherNames: data.otherNames };
@@ -78,7 +93,7 @@ const SignUp = () => {
 
     } catch (error) {
       console.log(error);
-      toast.error(error.message)
+      toast.error("An Error Occured")
     } finally {
       setIsSubmitting(false)
     }
@@ -180,15 +195,21 @@ const SignUp = () => {
               />
               {errors.username && (<p className="text-red-500">{errors.username.message}</p>
               )}
-              
-               {
-                usernameAvailable  && <p className="bg-green-500">Username is avaialable!</p>
-              }
-              
 
-              {
-                usernameNotAvailable && <p className="bg-red-500">Username is already taken!</p>
-              }
+              <div>
+                {
+                  isUsernameLoading && <Loader/>
+                }
+
+                {
+                  usernameAvailable && <p className="bg-green-500">Username is available!</p>
+                }
+
+                {
+                  usernameNotAvailable && <p className="bg-red-500">Username is already taken!</p>
+                }
+              </div>
+
             </div>
 
             <div className="flex flex-col">

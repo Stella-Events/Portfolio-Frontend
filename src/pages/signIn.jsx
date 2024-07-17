@@ -45,7 +45,7 @@ const Signin = () => {
     }
     catch (error) {
       console.log(error);
-      toast.error(error);
+      toast.error("An Error Occured");
       setIsSubmitting 
     }
     finally {
