@@ -7,7 +7,10 @@ import { apiLogin } from "../services/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
+import {toast} from "react-toastify"
+import { ColorRing } from "react-loader-spinner";
 import { toast } from "react-toastify";
+
 
 
 
@@ -30,6 +33,12 @@ const Signin = () => {
         password: data.password
       });
       console.log("Response: ", res.data)
+      toast.success(res.data)
+      setTimeout(() =>{
+        //redirect user to dashboard
+      navigate("/dashboard")
+      }, 8000)
+
 
       toast.success(res.data)
       setTimeout(() => {
@@ -42,8 +51,13 @@ const Signin = () => {
     }
     catch (error) {
       console.log(error);
+
+      toast.error("An Error Occured");
+      setIsSubmitting 
+
       toast.error(error);
       setIsSubmitting
+
     }
     finally {
       setIsSubmitting(false);
@@ -108,6 +122,11 @@ const Signin = () => {
                   <input
                     type="submit" value="SignIn" className="h-9 bg-[#7848f4] w-40 text-white rounded-lg" placeholder="Create Event">
                   </input>
+                  {isSubmitting ? <ColorRing <ColorRing visible={true}
+                    color="#4fa94d"
+                    width="100"
+                    visible={true}
+                    ariaLabel="Color-ring-circles-loading"
                   {isSubmitting ? <ColorRing visible={true}
                     height="80"
                     width="80"
@@ -115,6 +134,7 @@ const Signin = () => {
                     wrapperStyle={{}}
                     wrapperClass="color-ring-wrapper"
                     colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+
                   /> : "Login"}
                 </button>
               </div>

@@ -11,3 +11,4 @@ export const apiLogin = async(payload) => {
 export const apiCheckUsernameExists = async(userName) => {
     return apiClients.get(`/auth/${userName}`); 
 };
+

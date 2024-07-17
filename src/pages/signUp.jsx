@@ -1,16 +1,102 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signupV } from "../assets";
-import { useForm } from "react-hook-form";
+import { useForm, useFormContext } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { apiCheckUsernameExists, apiSignup } from "../services/auth";
+import { toast } from "react-toastify"
+import { FallingLines } from "react-loader-spinner";
+import Loader from "../components/loader";
+import { debounce } from "lodash";
 
 const SignUp = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [usernameAvailable, setUsernameAvailable] = useState(false)
+  const [usernameNotAvailable, setUsernameNotAvailable] = useState(false)
+  const [isUsernameLoading, setIsUsernameLoading] = useState(false)
+  
+
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {
+  const checkUserName = async (username) => {
+    console.log("I've been called");
+    setIsUsernameLoading
+    try {
+      const res = await apiCheckUsernameExists(username)
+      console.log(res.data)
+      const user = res.data.user;
+      if (user) {
+        setUsernameNotAvailable(true);
+        setUsernameAvailable(false);
+
+      }
+
+      else {
+        setUsernameAvailable(true);
+        setUsernameNotAvailable(false);
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+    finally {
+      isUsernameLoading(false);
+    }
+  };
+
+  const userNameWatch = watch("username");
+  console.log(userNameWatch);
+
+  useEffect(() => {
+        const debouncedSearch  = debounce (async() => {
+          if (userNameWatch) {
+           await checkUserName(userNameWatch)
+          }
+        }, 1000)
+
+        debouncedSearch();
+        return ()=>{
+          debouncedSearch.cancel();
+        }
+  
+  }, [userNameWatch])
+
+
+
+
+  const onSubmit = async (data) => {
     console.log(data);
+    setIsSubmitting(true)
+    let payload = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    }
+    if (data.otherNames) {
+      payload = { ...payload, otherNames: data.otherNames };
+    }
+    try {
+      const res = await apiSignup(payload);
+      console.log(res.data);
+      toast.success(res.data)
+      setTimeout(() => {
+        navigate("/signin")
+      }, 8000);
+
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error Occured")
+    } finally {
+      setIsSubmitting(false)
+    }
   };
 
   return (
@@ -24,7 +110,7 @@ const SignUp = () => {
           <h2 className="text-white text-5xl font-bold py-11 px-[100px]">Welcome back</h2>
           <p className="text-white mb-11 px-[60px]">To keep connected with us provide us with your information</p>
           <button className="text-white w-[128px] h-[49px] bg-aColor text-[20px] rounded">
-          <Link to="/signin" className="px-2 text-white">
+            <Link to="/signin" className="px-2 text-white">
               signin
             </Link>
           </button>
@@ -107,7 +193,23 @@ const SignUp = () => {
                   }
                 })}
               />
-              {errors.username && <p className="text-red-500">{errors.username.message}</p>}
+              {errors.username && (<p className="text-red-500">{errors.username.message}</p>
+              )}
+
+              <div>
+                {
+                  isUsernameLoading && <Loader/>
+                }
+
+                {
+                  usernameAvailable && <p className="bg-green-500">Username is available!</p>
+                }
+
+                {
+                  usernameNotAvailable && <p className="bg-red-500">Username is already taken!</p>
+                }
+              </div>
+
             </div>
 
             <div className="flex flex-col">
@@ -135,18 +237,23 @@ const SignUp = () => {
             </div>
 
             <button type="submit" className="w-1/2 py-3 bg-aColor text-white text-lg font-bold rounded flex items-center justify-center space-x-2 mb-2">
-              <span>Sign Up</span>
+              <span>{isSubmitting ? <FallingLines
+                color="#4fa94d"
+                width="100"
+                visible={true}
+                ariaLabel="falling-circles-loading"
+              /> : "SignUp"}</span>
             </button>
           </form>
           <div className="flex items-center mt-5">
-              <input
-                type="checkbox"
-                id="termsAndConditions"
-                className="mr-2"
-                {...register("termsAndConditions", { required: "You must accept the terms and conditions" })}
-              />
-  <label htmlFor="terms" className="font-light text-black">I accept the <Link className="font-medium text-primary-600 hover:underline " to="#">Terms and Conditions</Link> </label>            </div>
-            {errors.termsAndConditions && <p className="text-red-500">{errors.termsAndConditions.message}</p>}
+            <input
+              type="checkbox"
+              id="termsAndConditions"
+              className="mr-2"
+              {...register("termsAndConditions", { required: "You must accept the terms and conditions" })}
+            />
+            <label htmlFor="terms" className="font-light text-black">I accept the <Link className="font-medium text-primary-600 hover:underline " to="#">Terms and Conditions</Link> </label>            </div>
+          {errors.termsAndConditions && <p className="text-red-500">{errors.termsAndConditions.message}</p>}
         </div>
       </div>
     </div>
