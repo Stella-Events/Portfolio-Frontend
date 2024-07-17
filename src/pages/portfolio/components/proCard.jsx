@@ -1,7 +1,7 @@
 import { Clock8Icon, LocateIcon, TicketIcon } from "lucide-react"
 
 
-const proTile = ({ card, name, ticket, time, location }) => {
+const ProCard = ({ card, name, ticket, time, location }) => {
     
     return (
         <div className="h-80 w-2/5 bg-black place-content-center 
@@ -30,4 +30,4 @@ const proTile = ({ card, name, ticket, time, location }) => {
     )
 }
 
-export default proTile
+export default ProCard
