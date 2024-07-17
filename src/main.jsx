@@ -4,8 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import { Bounce, ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainers } from 'react-toastify'
-import { Bounces } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,14 +19,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       theme="light"
       transition={Bounce}
     />
-
-      autoCloses={5000}
-      hideProgressBarr={false}
-      closeOnClickk
-      pauseOnHoverr
-      draggablee
-      theme="light"
-      transitions={Bounce}
-      />
   </React.StrictMode>,
 )
