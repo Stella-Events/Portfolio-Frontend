@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import PagesLayout from "../layout/pagesLayout";
-import K from "../../dashboard/components/constants";
+import K from "../components/constants";
 
 const Achievements = () => {
   const navigate = useNavigate();

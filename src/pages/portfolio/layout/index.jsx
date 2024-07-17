@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom"
 import Sidenav from "../components/sidenav"
 import NameNav from "../components/nameNav"
-import Ground from "../../../assets/images/ground.jpg"
 
 
-const portfolioLayout = () => {
+const PortfolioLayout = () => {
     return (
-        <div className="bg-[url('./assets/images/ground,jpg')]">
+        <div className="bg-[url('./assets/images/ground.jpg')]">
             <NameNav/>
             <div className="flex flex-row justify-between">
                 <Sidenav />
@@ -16,4 +15,4 @@ const portfolioLayout = () => {
     )
 }
 
-export default portfolioLayout
+export default PortfolioLayout

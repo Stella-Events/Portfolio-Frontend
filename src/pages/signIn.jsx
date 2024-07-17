@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { apiLogin } from "../services/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ColorRing } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 
 
@@ -13,32 +15,34 @@ const Signin = () => {
   // Let isSubmitting = false;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate()
-  
+
   console.log(isSubmitting)
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data);
-    //isSubmitting = true
     setIsSubmitting(true);
 
     try {
       const res = await apiLogin({
-        // email: data.email, 
         userName: data.username,
         password: data.password
       });
       console.log("Response: ", res.data)
-      //redirect user to dashboard
-      navigate("/dashboard")
 
-      //isSubmitting = false
-      setIsSubmitting(false)
-      // console.log("Second: I got called"); 
+      toast.success(res.data)
+      setTimeout(() => {
+        //redirect user to dashboard
+        navigate("/dashboard")
+      }, 1000 )
+
+
+
     }
     catch (error) {
       console.log(error);
+      toast.error(error);
       setIsSubmitting
     }
     finally {
@@ -104,7 +108,14 @@ const Signin = () => {
                   <input
                     type="submit" value="SignIn" className="h-9 bg-[#7848f4] w-40 text-white rounded-lg" placeholder="Create Event">
                   </input>
-                  {isSubmitting ? "Loading..." : "Login"}
+                  {isSubmitting ? <ColorRing visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="color-ring-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="color-ring-wrapper"
+                    colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                  /> : "Login"}
                 </button>
               </div>
             </form>

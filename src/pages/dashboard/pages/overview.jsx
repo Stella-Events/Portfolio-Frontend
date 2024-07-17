@@ -21,7 +21,7 @@ const Overview = () => {
                 to={link}
                 className="text-white w-[200px] bg-opacity-50 bg-black py-1 px-3 rounded hover:bg-opacity-70 transition-all duration-300"
               >
-                View All 
+                View More 
               </Link>
             </div>
           </div>
