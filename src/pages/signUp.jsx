@@ -107,7 +107,7 @@ const SignUp = () => {
           <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)]"></div>
         </div>
         <div className="absolute top-[310px] flex flex-col items-center w-full">
-          <h2 className="text-white text-5xl font-bold py-11 px-[100px]">Welcome back</h2>
+          <h2 className="text-white text-5xl font-bold py-11 px-[100px]">Welcome </h2>
           <p className="text-white mb-11 px-[60px]">To keep connected with us provide us with your information</p>
           <button className="text-white w-[128px] h-[49px] bg-aColor text-[20px] rounded">
             <Link to="/signin" className="px-2 text-white">
@@ -118,7 +118,7 @@ const SignUp = () => {
       </div>
       <div className="flex flex-col justify-center items-center w-1/2 p-8">
         <div className="mb-5">
-          <span className="text-3xl font-bold">Join Stella <span className="text-aColor">Portfolio</span></span>
+          <span className="text-3xl font-bold">Join Portfolio<span className="text-secondary">Hive</span></span>
           <h2 className="text-2xl font-bold mt-4 mb-6"></h2>
           <span> Already have an account?
             <Link to="/signin" className="underline px-2 text-black/60">
