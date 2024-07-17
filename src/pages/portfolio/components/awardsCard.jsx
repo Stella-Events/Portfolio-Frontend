@@ -1,6 +1,7 @@
 import { CalendarDays, Landmark, ScrollText, Trophy } from "lucide-react"
 
 
+
 const AwardsCard = ({ pic, name, description, date, institution}) => {
 
     return (

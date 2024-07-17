@@ -1,6 +1,6 @@
 
 import HomeCard from "../components/homeCard"
-import dummyOne from ".././../../assets/images/dummyOne.jpg"
+import dummyOne from "../../../assets/images/dummyOne.jpg"
 
 
 
@@ -20,7 +20,7 @@ const Welcome = () => {
               <span className="font-bold text-1xl text-orange-600">E X P L O R E</span>
             </div>
             <div>
-              <HomeCard profpic={dummyOne}/>
+              <HomeCard profpic={dummyOne} className=""/>
             </div>
           </div>
         </div>
