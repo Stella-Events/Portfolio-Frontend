@@ -34,7 +34,6 @@ const Experiences = () => {
         ))}
       </div>
     </PagesLayout>
-  );
-};
+  )};
 
 export default Experiences;

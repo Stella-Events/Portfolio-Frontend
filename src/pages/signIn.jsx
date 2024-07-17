@@ -6,8 +6,11 @@ import { useForm } from "react-hook-form";
 import { apiLogin } from "../services/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FallingLines } from "react-loader-spinner";
+import { ColorRing } from "react-loader-spinner";
 import {toast} from "react-toastify"
+import { ColorRing } from "react-loader-spinner";
+import { toast } from "react-toastify";
+
 
 
 
@@ -22,12 +25,10 @@ const Signin = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    //isSubmitting = true
     setIsSubmitting(true);
 
     try {
       const res = await apiLogin({
-        // email: data.email, 
         userName: data.username,
         password: data.password
       });
@@ -37,16 +38,26 @@ const Signin = () => {
         //redirect user to dashboard
       navigate("/dashboard")
       }, 8000)
-      
 
-      //isSubmitting = false
-      setIsSubmitting(false)
-      // console.log("Second: I got called"); 
+
+      toast.success(res.data)
+      setTimeout(() => {
+        //redirect user to dashboard
+        navigate("/dashboard")
+      }, 1000 )
+
+
+
     }
     catch (error) {
       console.log(error);
+
       toast.error("An Error Occured");
       setIsSubmitting 
+
+      toast.error(error);
+      setIsSubmitting
+
     }
     finally {
       setIsSubmitting(false);
@@ -111,11 +122,19 @@ const Signin = () => {
                   <input
                     type="submit" value="SignIn" className="h-9 bg-[#7848f4] w-40 text-white rounded-lg" placeholder="Create Event">
                   </input>
-                  {isSubmitting ? <FallingLines
+                  {isSubmitting ? <ColorRing <ColorRing visible={true}
                     color="#4fa94d"
                     width="100"
                     visible={true}
-                    ariaLabel="falling-circles-loading"
+                    ariaLabel="Color-ring-circles-loading"
+                  {isSubmitting ? <ColorRing visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="color-ring-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="color-ring-wrapper"
+                    colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+
                   /> : "Login"}
                 </button>
               </div>

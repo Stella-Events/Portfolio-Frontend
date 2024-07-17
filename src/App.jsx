@@ -11,8 +11,8 @@ import Contact from "./pages/dashboard/pages/contact"
 import Skills from "./pages/dashboard/pages/skills"
 import Achievements from "./pages/dashboard/pages/achievements"
 import Overview from "./pages/dashboard/pages/overview"
-import AddProfile from "./pages/dashboard/pages/addProfile"
-import AddSkills from "./pages/dashboard/pages/addSkills"
+import AddProfile from "./pages/dashboard/pages/forms/addProfile"
+import AddSkills from "./pages/dashboard/pages/forms/addSkills"
 import Experiences from "./pages/dashboard/pages/experiences"
 import PortfolioLayout from "./pages/portfolio/layout"
 import PortfolioWelcome from "./pages/portfolio/pages/welcome"
@@ -22,6 +22,14 @@ import PortfolioAchievement from "./pages/portfolio/pages/achievement"
 import PortfolioProjects from "./pages/portfolio/pages/projectss"
 import PortfolioVolunteering from "./pages/portfolio/pages/volunteering"
 import PortfolioSkills from "./pages/portfolio/pages/skillss"
+import AddExperience from "./pages/dashboard/pages/forms/addExperience"
+import AddProject from "./pages/dashboard/pages/forms/addProject"
+import Education from "./pages/dashboard/pages/education"
+import AddEducation from "./pages/dashboard/pages/forms/addEducation"
+import Volunteering from "./pages/dashboard/pages/volunteering"
+import AddAchievements from "./pages/dashboard/pages/forms/addAchievements"
+import AddVolunteering from "./pages/dashboard/pages/forms/addVolunteering"
+import AddContact from "./pages/dashboard/pages/forms/addContact"
 
 
 
@@ -52,10 +60,17 @@ const router = createBrowserRouter([
         path: "profile/add-profile",
         element: <AddProfile/>
       },
+
       {
         path: "experiences",
         element: <Experiences/>
       },
+      {
+        path: "experiences/add-experience",
+        element: <AddExperience />
+      },
+      
+
       {
         path: "skills",
         element: <Skills />
@@ -64,17 +79,50 @@ const router = createBrowserRouter([
         path: "skills/add-skill",
         element: <AddSkills/>
       },
+
       {
         path: "projects",
         element: <Projects/>
       },
       {
+        path: "projects/add-project",
+        element: <AddProject />
+      },
+
+      {
         path: "achievements",
         element: <Achievements />
       },
       {
+        path: "achievements/add-achievement",
+        element: <AddAchievements />
+      },
+
+      {
+        path: "education",
+        element: <Education />
+      },
+      {
+        path: "education/add-education",
+        element: <AddEducation />
+      },
+
+      {
+        path: "volunteering",
+        element: <Volunteering />
+      },
+      {
+        path: "volunteering/add-volunteering",
+        element: <AddVolunteering />
+      },   
+
+      {
         path: "contact",
         element: <Contact />
+      },
+      {
+        path: "contact/add-contact",
+        element: <AddContact />
       },
     ]
   },
