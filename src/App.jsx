@@ -116,14 +116,14 @@ const router = createBrowserRouter([
         element: <AddVolunteering />
       },   
 
-      // {
-      //   path: "contact",
-      //   element: <Contact />
-      // },
-      // {
-      //   path: "contact/add-contact",
-      //   element: <AddContact />
-      // },
+      {
+        path: "contact",
+        element: <Contact />
+      },
+      {
+        path: "contact/add-contact",
+        element: <AddContact />
+      },
     ]
   },
 

@@ -23,31 +23,37 @@ export default {
             text: "Profile",
             link: "/dashboard/profile"
         },
-        {
-            icon: <Newspaper />,
-            text: "Experiences",
-            link: "/dashboard/experiences"
-        },
+
         {
             icon: <GraduationCap />,
             text: "Education",
             link: "/dashboard/education"
         },
-        {
-            icon: <Medal />,
-            text: "Achievements",
-            link: "/dashboard/achievements"
-        },
+
         {
             icon: <Settings2 />,
             text: "Skills",
             link: "/dashboard/skills"
         },
+ 
         {
             icon: <FileCheck2 />,
             text: "Projects",
             link: "/dashboard/projects"
         },
+        
+        {
+            icon: <Newspaper />,
+            text: "Experiences",
+            link: "/dashboard/experiences"
+        },
+        
+        {
+            icon: <Medal />,
+            text: "Achievements",
+            link: "/dashboard/achievements"
+        },
+       
 
         {
             icon: <HandHeart />,
@@ -95,31 +101,31 @@ export default {
             icon: <Sparkles />,
             text: "Experiences",
             total: 19,
-            link: "/experiences"
+            link: "/dashboard/experiences"
         },
         {
             icon: <FileBadge />,
             text: "Achievements",
             total: 10,
-            link: "/achievements"
+            link: "/dashboard/achievements"
         },
         {
             icon: <UserCog />,
             text: "Skills",
             total: 23,
-            link: "/skills"
+            link: "/dashboard/skills"
         },
         {
             icon: <Target />,
             text: "Projects",
             total: 30,
-            link: "/projects"
+            link: "/dashboard/projects"
         },
         {
             icon: <SmartphoneNfc />,
             text: "Contact Details",
             total: 4,
-            link: "/contact-information"
+            link: "/dashboard/contact"
         }
     ],
 
@@ -335,41 +341,52 @@ export default {
 
     PROJECTS: [
         {
-            projectName: "Personal Portfolio",
-            description: "A personal portfolio website to showcase my projects and skills.",
-            technologies: ["React", "Tailwind CSS", "Framer Motion"],
-            githubLink: "https://github.com/yourusername/personal-portfolio",
-            imageUrl: project1,
+          projectName: "Personal Portfolio",
+          description: "A personal portfolio website to showcase my projects and skills.",
+          contributors: ["John Doe", "Jane Smith"],
+          skills: ["HTML", "CSS", "JavaScript"],
+          links: {github: "https://github.com/yourusername/personal-portfolio"},
+          nameOfInstitution: "Personal Project",
+          imageUrl: project1,
         },
         {
-            projectName: "E-commerce Store",
-            description: "An e-commerce store built with modern web technologies.",
-            technologies: ["Next.js", "Tailwind CSS", "MongoDB"],
-            githubLink: "https://github.com/yourusername/ecommerce-store",
-            imageUrl: project2,
+          projectName: "E-commerce Store",
+          description: "An e-commerce store built with modern web technologies.",
+          contributors: ["Alice Brown", "Bob Green"],
+          skills: ["React", "Next.js", "MongoDB"],
+          links: { github: "https://github.com/yourusername/ecommerce-store"},
+          nameOfInstitution: "Online Retail Co.",
+          imageUrl: project2,
         },
         {
-            projectName: "Chat Application",
-            description: "A real-time chat application with authentication and database integration.",
-            technologies: ["React", "Node.js", "Socket.io", "Express"],
-            githubLink: "https://github.com/yourusername/chat-application",
-            imageUrl: project3,
+          projectName: "Chat Application",
+          description: "A real-time chat application with authentication and database integration.",
+          contributors: ["Charlie Black", "Dave White"],
+          skills: ["React", "Node.js", "Socket.io"],
+          links: { github: "https://github.com/yourusername/chat-application"},
+          nameOfInstitution: "Communications Inc.",
+          imageUrl: project3,
         },
         {
-            projectName: "Weather App",
-            description: "A weather forecasting app using a public API.",
-            technologies: ["Vue.js", "Tailwind CSS", "OpenWeather API"],
-            githubLink: "https://github.com/yourusername/weather-app",
-            imageUrl: project4,
+          projectName: "Weather App",
+          description: "A weather forecasting app using a public API.",
+          contributors: ["Eve Blue", "Frank Yellow"],
+          skills: ["Vue.js", "API Integration"],
+          links: { github: "https://github.com/yourusername/weather-app"},
+          nameOfInstitution: "Weather Corp.",
+          imageUrl: project4,
         },
         {
-            projectName: "Blog Platform",
-            description: "A full-featured blog platform with markdown support.",
-            technologies: ["Gatsby", "GraphQL", "Tailwind CSS"],
-            githubLink: "https://github.com/yourusername/blog-platform",
-            imageUrl: project5,
+          projectName: "Blog Platform",
+          description: "A full-featured blog platform with markdown support.",
+          contributors: ["Grace Violet", "Henry Orange"],
+          skills: ["Gatsby", "GraphQL", "Tailwind CSS"],
+          links: {github: "https://github.com/yourusername/blog-platform"},
+          nameOfInstitution: "Blogging Solutions",
+          imageUrl: project5,
         },
-    ],
+      ],
+      
 
 }
 

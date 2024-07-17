@@ -12,14 +12,13 @@ const Profile = () => {
     maritalStatus: "Single",
     address: "123 Example Street, City, Country",
     dateOfBirth: "1990-01-01",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    about: "Hello! I'm Christian Grey, a dedicated and passionate software developer with a keen interest in web technologies. With a strong background in both frontend and backend",
     contact: "+1234567890",
     resume: "https://example.com/resume.pdf",
     languages: "English, Spanish",
     githubLink: "https://github.com/example",
     linkedInLink: "https://linkedin.com/in/example",
-    twitterLink: "https://twitter.com/example",
+    twitterLink: "https://twitter.com/example2",
   });
 
   return (
@@ -97,26 +96,32 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <div className="w-full bg-white p-6 shadow rounded-lg mt-8">
+        <div className="w-full bg-white p-6 shadow rounded-lg mt-8 ">
           <h2 className="text-2xl font-bold mb-4">Personal Information</h2>
-          <p>
-            <span className="font-bold">Sex:</span> {profileData.sex}
-          </p>
-          <p>
-            <span className="font-bold">Marital Status:</span> {profileData.maritalStatus}
-          </p>
-          <p>
-            <span className="font-bold">Date of Birth:</span> {profileData.dateOfBirth}
-          </p>
-          <p>
-            <span className="font-bold">Address:</span> {profileData.address}
-          </p>
-          <h2 className="text-2xl font-bold mt-8 mb-4">Bio</h2>
-          <p>{profileData.bio}</p>
-          <h2 className="text-2xl font-bold mt-8 mb-4">About</h2>
-          <p>{profileData.about}</p>
+          <div className="flex justify-between ">
+          <div className="mr-[100px]">
+              <p>
+                <span className="font-bold">Sex:</span> {profileData.sex}
+              </p>
+              <p>
+                <span className="font-bold">Marital Status:</span> {profileData.maritalStatus}
+              </p>
+            </div>
+            <div>
+              <p>
+                <span className="font-bold">Date of Birth:</span> {profileData.dateOfBirth}
+              </p>
+              <p>
+                <span className="font-bold">Address:</span> {profileData.address}
+              </p>
+            </div>
+          </div>
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold mt-8 mb-4">About</h2>
+            <p>{profileData.about}</p>
+          </div>
         </div>
-      </div>
     </PagesLayout>
   );
 };
