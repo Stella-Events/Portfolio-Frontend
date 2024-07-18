@@ -1,17 +1,17 @@
-import { apiClients } from "./config";
+import { apiClient } from "./config";
 
 export const apiGetAllProjects = async () => {
-    return apiClients.get("/projects")
+    return apiClient.get("/projects")
 };
 
 export const apiAddProject = async () => {
-    return apiClients.post("/projects")
+    return apiClient.post("/projects")
 };
 
 export const apiUpdateProject = async () => {
-    return apiClients.patch(`/projects/${id}`)
+    return apiClient.patch(`/projects/${id}`)
 };
 
 export const apiDeleteProject = async () => {
-    return apiClients.delete(`/projects/${id}`)
+    return apiClient.delete(`/projects/${id}`)
 };

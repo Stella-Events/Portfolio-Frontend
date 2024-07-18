@@ -1,7 +1,4 @@
 import signIn from "../assets/images/signIn.png";
-import facebook from "../assets/images/facebook.png";
-import insta from "../assets/images/insta.png";
-import twitter from "../assets/images/twitter.png";
 import { useForm } from "react-hook-form";
 import { apiLogin } from "../services/auth";
 import { useState } from "react";
@@ -9,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import { google } from "../assets";
 
 
 
@@ -16,7 +14,10 @@ const Signin = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, 
+    handleSubmit, 
+    formState: { errors } 
+  } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -53,7 +54,6 @@ const Signin = () => {
           <div>
             <form className="w-[300px] mx-auto p-4" onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-8">
-                {/* USERNAME */}
                 <label htmlFor="username" className="text-gray-500 text-2 mb-1 mr-0">
                   Username
                 </label>
@@ -83,8 +83,7 @@ const Signin = () => {
                 {errors.password && (<p className="text-red-500">{errors.password.message}</p>)}
               </div>
               <div>
-                {/* SUBMIT BUTTON */}
-                <button className="flex justify-center items-center w-full h-9 bg-aColor text-white rounded-lg">
+                <button className="flex justify-center items-center w-full h-9 bg-secondary text-white rounded-lg">
                   {isSubmitting ? (
                     <ColorRing
                       visible={true}
@@ -102,18 +101,13 @@ const Signin = () => {
               </div>
             </form>
           </div>
-          <dir>
+          <div>
             <h2 className="text-2xl font-bold mt-4 mb-6"></h2>
             <span> Don't have an account?
               <Link to="/signup" className="underline px-2 text-black/60">
                 signup
               </Link>
             </span>
-          </dir>
-          <div className="flex flex-row justify-between mt-4">
-            <span className="size-[44px]"><img src={facebook} alt="blue-icon-of-facebook" /></span>
-            <span className="size-[44px]"><img src={insta} alt="logo-of-instagram" /></span>
-            <span className="size-[35px] mt-1"><img src={twitter} alt="new-logo-of-twitter" /></span>
           </div>
         </div>
       </div>

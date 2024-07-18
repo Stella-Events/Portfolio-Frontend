@@ -1,21 +1,21 @@
-import { apiClients } from "./config"
+import { apiClient } from "./config"
 
 export const apiAddSkill = async (payload) => {
-    return apiClients.post("/skills", payload);
+    return apiClient.post("/skills", payload);
 };
 
 export const apiGetSkills = async () => {
-    return apiClients.get("/skills");
+    return apiClient.get("/skills");
 };
 
 export const apiGetSkillById = async () => {
-    return apiClients.get(`/skills/${id}`);
+    return apiClient.get(`/skills/${id}`);
 };
 
 export const apiUpdateSkill = async () => {
-    return apiClients.patch(`/skills/${id}`);
+    return apiClient.patch(`/skills/${id}`);
 };
 
-export const apiDeleteSkill = async () => {
-    return apiClients.delete(`/skills/${id}`);
+export const apiDeleteSkill = async (id) => {
+    return apiClient.delete(`/skills/${id}`);
 };

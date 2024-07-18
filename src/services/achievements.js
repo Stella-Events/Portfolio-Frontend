@@ -1,17 +1,17 @@
-import { apiClients } from "./config"
+import { apiClient } from "./config"
 
 export const apiGetAchievements = async () => {
-    return apiClients.get("/achievements");
+    return apiClient.get("/achievements");
 };
 
 export const apiAddAchievements = async () => {
-    return apiClients.post("/achievements");
+    return apiClient.post("/achievements");
 };
 
 export const apiUpdateAchievement = async () => {
-    return apiClients.patch(`/achievements/${id}`)
+    return apiClient.patch(`/achievements/${id}`)
 };
 
 export const apiDeleteAchievement = async () => {
-    return apiClients.delete(`/achievements/${id}`)
+    return apiClient.delete(`/achievements/${id}`)
 };

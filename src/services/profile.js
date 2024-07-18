@@ -1,5 +1,5 @@
-import { apiClients } from "./config";
+import { apiClient } from "./config";
 
 export const apiAddProfile = async () => {
-    return apiClients.post("/profiles");
+    return apiClient.post("/profiles");
 };

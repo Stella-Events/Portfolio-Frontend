@@ -30,6 +30,7 @@ import Volunteering from "./pages/dashboard/pages/volunteering"
 import AddAchievements from "./pages/dashboard/pages/forms/addAchievements"
 import AddVolunteering from "./pages/dashboard/pages/forms/addVolunteering"
 import AddContact from "./pages/dashboard/pages/forms/addContact"
+import LearnMore from "./pages/dashboard/pages/learnMore"
 
 
 
@@ -39,6 +40,8 @@ const router = createBrowserRouter([
   { path: "signin", element: <Signin /> },
 
   { path: "signup", element: <SignUp /> },
+
+  { path: "learnmore", element: <LearnMore/>},
 
   {
     path: "/dashboard", element: <Dashboardlayout />,

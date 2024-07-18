@@ -1,17 +1,17 @@
-import { apiClients } from "./config"
+import { apiClient } from "./config"
 
 export const apiGetEducation = async () => {
-    return apiClients.get("/education")
+    return apiClient.get("/education")
 };
 
 export const AddEducation = async () => {
-    return apiClients.post("/education")
+    return apiClient.post("/education")
 };
 
 export const UpdateEducation = async () => {
-    return apiClients.patch(`/education/${id}`)
+    return apiClient.patch(`/education/${id}`)
 };
 
 export const DeleteEducation = async () => {
-    return apiClients.delete(`/education/${id}`)
+    return apiClient.delete(`/education/${id}`)
 };

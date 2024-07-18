@@ -1,17 +1,17 @@
-import { apiClients } from "./config"
+import { apiClient } from "./config"
 
 export const apiGetExperiences = async() => {
-    return apiClients.get("/experiences");
+    return apiClient.get("/experiences");
 };
 
 export const apiAddExperience = async() => {
-    return apiClients.post("/experiences");
+    return apiClient.post("/experiences");
 };
 
 export const apiUpdateExperience = async () => {
-    return apiClients.patch(`/experiences/${id}`);
+    return apiClient.patch(`/experiences/${id}`);
 };
 
 export const apiDeleteExperience = async () => {
-    return apiClients.delete(`/experiences/${id}`)
+    return apiClient.delete(`/experiences/${id}`)
 };
