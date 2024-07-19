@@ -1,14 +1,14 @@
-import { apiClients } from "./config"
+import { apiClient } from "./config"
 
 export const apiSignup = async(payload) => {
-    return apiClients.post("/auth/signup", payload); 
+    return apiClient.post("/auth/signup", payload); 
 };
 
 export const apiLogin = async(payload) => {
-    return apiClients.post("/auth/login", payload); 
+    return apiClient.post("/auth/token", payload); 
 };
 
-export const apiCheckUsernameExists = async(userName) => {
-    return apiClients.get(`/auth/${userName}`); 
+export const apiCheckUsernameExists = async(username) => {
+    return apiClient.get(`/auth/${username}`); 
 };
 

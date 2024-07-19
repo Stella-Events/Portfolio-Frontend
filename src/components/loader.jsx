@@ -1,12 +1,15 @@
-import { FallingLines } from "react-loader-spinner"
+import { ColorRing } from "react-loader-spinner"
 
 const Loader = () => {
   return (
-    <FallingLines
-                color="#4fa94d"
-                width="100"
-                visible={true}
-                ariaLabel="falling-circles-loading"
+    < ColorRing
+    visible={true}
+    height="30"
+    width="30"
+    ariaLabel="color-ring-loading"
+    wrapperStyle={{}}
+    wrapperClass="color-ring-wrapper"
+    colors={['secondary']}
               /> 
   )
 }

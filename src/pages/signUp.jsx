@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { signupV } from "../assets";
+import { signup } from "../assets";
 import { useForm, useFormContext } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { apiCheckUsernameExists, apiSignup } from "../services/auth";
 import { toast } from "react-toastify"
-import { FallingLines } from "react-loader-spinner";
+import { ColorRing } from "react-loader-spinner";
 import Loader from "../components/loader";
 import { debounce } from "lodash";
 
@@ -100,25 +100,14 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="relative w-1/2">
-        <div className="relative">
-          <img className="w-full" src={signupV} alt="signup image" />
-          <div className="absolute inset-0 bg-[rgba(0,0,0,0.5)]"></div>
-        </div>
-        <div className="absolute top-[310px] flex flex-col items-center w-full">
-          <h2 className="text-white text-5xl font-bold py-11 px-[100px]">Welcome back</h2>
-          <p className="text-white mb-11 px-[60px]">To keep connected with us provide us with your information</p>
-          <button className="text-white w-[128px] h-[49px] bg-aColor text-[20px] rounded">
-            <Link to="/signin" className="px-2 text-white">
-              signin
-            </Link>
-          </button>
-        </div>
+    <div className="flex overflow-x-hidden ">
+        <div className=" w-1/2 h-full fixed">
+          <img className="w-full h-full" src={signup} alt="signup image" />
+          <div className="absolute inset-0"></div>
       </div>
-      <div className="flex flex-col justify-center items-center w-1/2 p-8">
-        <div className="mb-5">
-          <span className="text-3xl font-bold">Join Stella <span className="text-aColor">Portfolio</span></span>
+      <div className="flex flex-col justify-center items-center pt-5 w-1/2 pl-[1000px]">
+        <div className="mb-5 pl-[500px] w-screen">
+          <span className="text-3xl font-bold">Join Portfolio<span className="text-secondary">Hive</span></span>
           <h2 className="text-2xl font-bold mt-4 mb-6"></h2>
           <span> Already have an account?
             <Link to="/signin" className="underline px-2 text-black/60">
@@ -236,12 +225,15 @@ const SignUp = () => {
               {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
             </div>
 
-            <button type="submit" className="w-1/2 py-3 bg-aColor text-white text-lg font-bold rounded flex items-center justify-center space-x-2 mb-2">
-              <span>{isSubmitting ? <FallingLines
-                color="#4fa94d"
-                width="100"
-                visible={true}
-                ariaLabel="falling-circles-loading"
+            <button type="submit" className="w-1/2 py-3 bg-secondary text-white text-lg font-bold rounded flex items-center justify-center space-x-2 mb-2">
+              <span>{isSubmitting ? <ColorRing
+                      visible={true}
+                      height="30"
+                      width="30"
+                      ariaLabel="color-ring-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="color-ring-wrapper"
+                      colors={['secondary']}
               /> : "SignUp"}</span>
             </button>
           </form>

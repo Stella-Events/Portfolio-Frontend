@@ -7,10 +7,10 @@ import { Linkedin, Github, Facebook, Twitter, Youtube } from "lucide-react";
 
 const SideBar = () => {
   return (
-    <div className="h-screen w-[300px] bg-aColor flex flex-col px-8 py-5 shadow-md fixed">
+    <div className="h-screen w-[200px] bg-aColor flex flex-col px-8 py-5 shadow-md fixed">
       <div>
         <span className="text-white text-2xl font-bold text-center">
-        Portfolio <span className="text-secondary">Hive</span>
+          Portfolio <span className="text-secondary">Hive</span>
         </span>
       </div>
       <div className="flex flex-col text-[#BDC3C7] gap-y-[12px] text-l font-bold py-3 ">
@@ -41,7 +41,7 @@ const SideBar = () => {
         ))}
       </div>
       <div>
-        
+
       </div>
       <div className="mt-7">
         <motion.button
@@ -56,37 +56,37 @@ const SideBar = () => {
           >
             <LogOut className="text-white group-hover:text-[#2C3E50]" />
           </motion.div>
-          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <Link to="/signin" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             Sign Out
-          </span>
+          </Link>
         </motion.button>
       </div>
-      <footer className=" text-tColor py-4 px-2 ">
-      <div className="container mx-auto flex flex-col items-center">
-        <div className="flex gap-y-4 gap-x-2 mb-2 mr-[90px]">
-          <Link to="https://www.linkedin.com" target="_blank" className="bg-gray-200 rounded">
-            <Linkedin className="w-5 h-5 hover:text-gray-400" />
-          </Link>
-          <Link to="https://www.github.com" target="_blank" className="bg-gray-200 rounded">
-            <Github className="w-5 h-5 hover:text-gray-400" />
-          </Link>
-          <Link to="https://www.facebook.com" target="_blank" className="bg-gray-200 rounded">
-            <Facebook className="w-5 h-5 hover:text-gray-400" />
-          </Link>
-          <Link to="https://www.twitter.com" target="_blank" className="bg-gray-200 rounded">
-            <Twitter className="w-5 h-5 hover:text-gray-400" />
-          </Link>
-          <Link to="https://www.youtube.com" target="_blank" className="bg-gray-200 rounded">
-            <Youtube className="w-5 h-5 hover:text-gray-400" />
-          </Link>
+      <footer className=" text-tColor py-4 ">
+        <div className="container mx-auto flex flex-col items-center">
+          <div className="flex gap-y-4 gap-x-2 mb-2 mr-[90px]">
+            <Link to="https://www.linkedin.com" target="_blank" className="bg-gray-200 rounded">
+              <Linkedin className="w-5 h-5 hover:text-gray-400" />
+            </Link>
+            <Link to="https://www.github.com" target="_blank" className="bg-gray-200 rounded">
+              <Github className="w-5 h-5 hover:text-gray-400" />
+            </Link>
+            <Link to="https://www.facebook.com" target="_blank" className="bg-gray-200 rounded">
+              <Facebook className="w-5 h-5 hover:text-gray-400" />
+            </Link>
+            <Link to="https://www.twitter.com" target="_blank" className="bg-gray-200 rounded">
+              <Twitter className="w-5 h-5 hover:text-gray-400" />
+            </Link>
+            <Link to="https://www.youtube.com" target="_blank" className="bg-gray-200 rounded">
+              <Youtube className="w-5 h-5 hover:text-gray-400" />
+            </Link>
+          </div>
+          <div className=" mr-[70px]">
+            <p className="text-[12px]">
+              2024 © Stella-Themes. All Rights Reserved.
+            </p>
+          </div>
         </div>
-        <div className=" mr-[70px]">
-        <p className="text-[12px]">
-          2024 © Stella-Themes. All Rights Reserved.
-        </p>
-        </div>
-      </div>
-    </footer>
+      </footer>
     </div>
   );
 };
