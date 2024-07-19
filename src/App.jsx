@@ -17,6 +17,7 @@ import Experiences from "./pages/dashboard/pages/experiences"
 import PortfolioLayout from "./pages/portfolio/layout"
 import PortfolioWelcome from "./pages/portfolio/pages/welcome"
 import PortfolioProfile from "./pages/portfolio/pages/profile"
+import PortfolioExperience from "./pages/portfolio/pages/experience"
 import PortfolioEducation from "./pages/portfolio/pages/education"
 import PortfolioAchievement from "./pages/portfolio/pages/achievement"
 import PortfolioProjects from "./pages/portfolio/pages/projectss"
@@ -126,20 +127,21 @@ const router = createBrowserRouter([
       },
     ]
   },
-
-
-
   
   {
     path: "/portfolio", element: <PortfolioLayout/>,
     children: [
+      // {
+      //   index: true,
+      //   element: <PortfolioWelcome/>
+      // },
       {
         index: true,
-        element: <PortfolioWelcome/>
+        element: <PortfolioProfile/>
       },
       {
-        path: "profile",
-        element: <PortfolioProfile/>
+        path: "experience",
+        element: <PortfolioExperience/>
       },
       {
         path: "education",
