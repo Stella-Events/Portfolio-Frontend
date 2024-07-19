@@ -1,16 +1,21 @@
-import { CircleUser, FileCheck2, HandHeart, Home, Medal, Newspaper, Power} from "lucide-react";
+import { CandlestickChart, CircleUser, FileCheck2, HandHeart, Medal, Newspaper, Power} from "lucide-react";
 
 export default {
     NAVLINKS : [
-        {
-            icon: <Home/>,
-            text: "Welcome",
-            link: "/portfolio"
-        },
+        // {
+        //     icon: <Home/>,
+        //     text: "Welcome",
+        //     link: "/portfolio"
+        // },
         {
            icon: <CircleUser/>,
             text: "Profile",
-            link: "/portfolio/profile"
+            link: "/portfolio"
+        },
+        {
+           icon: <CandlestickChart/>,
+            text: "Experience",
+            link: "/portfolio/experience"
         },
         {
             icon: <Newspaper/>,

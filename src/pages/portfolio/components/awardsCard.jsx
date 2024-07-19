@@ -7,7 +7,7 @@ const AwardsCard = ({ pic, name, description, date, institution}) => {
     return (
         
         <div className="h-60 w-[450px] bg-purple-950/20 place-content-center 
-                        px-5 py-5 border border-[#c57816] hover:border-4 shadow-xl">
+                        px-5 py-5 border border-[#c57816] hover:border-4 shadow-xl rounded-lg">
 
             <div className="flex flex-row justify-center relative gap-5">
                 <div className="w-1/2">
@@ -18,7 +18,7 @@ const AwardsCard = ({ pic, name, description, date, institution}) => {
                     </div> */}
 
                 </div>
-
+                            
                 <div className="flex flex-col gap-y-3 justify-evenly">
                     <div className="text-white text-1xl font-bold flex flex-row text-start gap-x-4"><Trophy className="text-[#c57816]"/>{name}</div>
                     <div className="text-white flex flex-row text-start gap-x-4"><ScrollText className="text-[#c57816]  size-[40px]"/>{description}</div>
