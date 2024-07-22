@@ -39,9 +39,19 @@ import { apiGetUserDetails } from "./services/preview";
 const router = createBrowserRouter([
   { path: "/", element: <Landing /> },
 
-  { path: "signin", element: <Signin /> },
-
-  { path: "signup", element: <SignUp /> },
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "signin",
+        element: <Signin />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+    ],
+  },
 
   { path: "learnmore", element: <LearnMore /> },
 
