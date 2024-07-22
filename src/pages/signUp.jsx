@@ -21,28 +21,28 @@ const SignUp = () => {
     handleSubmit,
     watch,
     formState: { errors }
-  } = useForm();
+  } = useForm({ reValidateMode: "onBlur", mode: "all" });
 
   const checkUserName = async (username) => {
-    console.log("I've been called");
-    setIsUsernameLoading
+    setIsUsernameLoading(true);
+
     try {
-      const res = await apiCheckUsernameExists(username)
-      console.log(res.data)
+      const res = await apiCheckUsernameExists(username);
+      console.log(res.data);
       const user = res.data.user;
       if (user) {
         setUsernameNotAvailable(true);
         setUsernameAvailable(false);
 
       }
-
       else {
         setUsernameAvailable(true);
         setUsernameNotAvailable(false);
       }
 
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      toast.error("An error occured!");
     }
     finally {
       isUsernameLoading(false);
@@ -50,7 +50,7 @@ const SignUp = () => {
   };
 
   const userNameWatch = watch("username");
-  console.log(userNameWatch);
+  // console.log(userNameWatch);
 
   useEffect(() => {
         const debouncedSearch  = debounce (async() => {
@@ -60,14 +60,12 @@ const SignUp = () => {
         }, 1000)
 
         debouncedSearch();
+
+
         return ()=>{
           debouncedSearch.cancel();
-        }
-  
-  }, [userNameWatch])
-
-
-
+        };
+  }, [userNameWatch]);
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -79,23 +77,24 @@ const SignUp = () => {
       email: data.email,
       password: data.password,
       confirmPassword: data.confirmPassword,
-    }
+    };
     if (data.otherNames) {
       payload = { ...payload, otherNames: data.otherNames };
     }
     try {
       const res = await apiSignup(payload);
       console.log(res.data);
-      toast.success(res.data)
+      toast.success(res.data);
+
       setTimeout(() => {
         navigate("/signin")
-      }, 8000);
+      }, 5000);
 
     } catch (error) {
       console.log(error);
-      toast.error("An Error Occured")
+      toast.error("An Error Occured");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   };
 
@@ -208,7 +207,13 @@ const SignUp = () => {
                 id="password"
                 className="p-2 border border-gray-300 rounded"
                 placeholder="Enter your password"
-                {...register("password", { required: "Password is required" })}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password length must be more than 8 characters",
+                  },
+                })}                
               />
               {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             </div>
