@@ -1,11 +1,26 @@
 import { Link } from "react-router-dom";
 import { LogOut } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import K from "./constants/index";
 import { Linkedin, Github, Facebook, Twitter, Youtube } from "lucide-react";
+import { apiLogout } from "../../../../src/services/auth";
+
 
 
 const SideBar = () => {
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    try {
+      await apiLogout();
+      toast.success("Logged out successfully");
+      navigate("/login");
+    } catch (error) {
+      toast.error("An error occured");
+    }
+  };
+
   return (
     <div className="h-screen w-[200px] bg-aColor flex flex-col px-8 py-5 shadow-md fixed">
       <div>
@@ -41,8 +56,8 @@ const SideBar = () => {
         ))}
       </div>
       <div>
-
       </div>
+
       <div className="mt-7">
         <motion.button
           className="group flex items-center gap-x-4 text-[#BDC3C7] hover:text-white transition-all duration-300"
@@ -57,10 +72,11 @@ const SideBar = () => {
             <LogOut className="text-white group-hover:text-[#2C3E50]" />
           </motion.div>
           <Link to="/signin" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Sign Out
+             LogOut
           </Link>
         </motion.button>
       </div>
+
       <footer className=" text-tColor py-4 ">
         <div className="container mx-auto flex flex-col items-center">
           <div className="flex gap-y-4 gap-x-2 mb-2 mr-[90px]">
