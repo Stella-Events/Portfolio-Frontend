@@ -2,11 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Logout from './pages/Logout';
+import Logout from '.';
 import NotFound from './pages/NotFound';
 // ... other imports
 
-function App() {
+function LogOut() {
   return (
     <Router>
       <Routes>
@@ -14,7 +14,7 @@ function App() {
           <Route index element={<Home />} />
           {/* Add other routes here */}
         </Route>
-        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default LogOut;

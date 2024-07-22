@@ -32,6 +32,7 @@ import AddAchievements from "./pages/dashboard/pages/forms/addAchievements"
 import AddVolunteering from "./pages/dashboard/pages/forms/addVolunteering"
 import AddContact from "./pages/dashboard/pages/forms/addContact"
 import LearnMore from "./pages/dashboard/pages/learnMore"
+import { apiGetUserDetails } from "./services/preview";
 
 
 
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
 
   { path: "signup", element: <SignUp /> },
 
-  { path: "learnmore", element: <LearnMore/>},
+  { path: "learnmore", element: <LearnMore /> },
 
   {
     path: "/dashboard", element: <Dashboardlayout />,
@@ -53,27 +54,27 @@ const router = createBrowserRouter([
       },
       {
         path: "overview",
-        element: <Overview/>
+        element: <Overview />
       },
 
       {
         path: "profile",
-        element: <Profile/>
+        element: <Profile />
       },
       {
         path: "profile/add-profile",
-        element: <AddProfile/>
+        element: <AddProfile />
       },
 
       {
         path: "experiences",
-        element: <Experiences/>
+        element: <Experiences />
       },
       {
         path: "experiences/add-experience",
         element: <AddExperience />
       },
-      
+
 
       {
         path: "skills",
@@ -81,12 +82,12 @@ const router = createBrowserRouter([
       },
       {
         path: "skills/add-skill",
-        element: <AddSkills/>
+        element: <AddSkills />
       },
 
       {
         path: "projects",
-        element: <Projects/>
+        element: <Projects />
       },
       {
         path: "projects/add-project",
@@ -118,7 +119,7 @@ const router = createBrowserRouter([
       {
         path: "volunteering/add-volunteering",
         element: <AddVolunteering />
-      },   
+      },
 
       {
         path: "contact",
@@ -130,9 +131,9 @@ const router = createBrowserRouter([
       },
     ]
   },
-  
+
   {
-    path: "/portfolio", element: <PortfolioLayout/>,
+    path: "/portfolio", element: <PortfolioLayout />,
     children: [
       // {
       //   index: true,
@@ -140,31 +141,44 @@ const router = createBrowserRouter([
       // },
       {
         index: true,
-        element: <PortfolioProfile/>
+        element: <PortfolioProfile />,
+
+        loader: async ({ params }) => {
+          const username = params.username;
+          try {
+            const response = await apiGetUserDetails(username);
+            const userProfileData = response?.data.user;
+            return userProfileData;
+          } catch (error) {
+            toast.error("An error occured");
+            return null;
+          }
+        },
       },
+
       {
         path: "experience",
-        element: <PortfolioExperience/>
+        element: <PortfolioExperience />
       },
       {
         path: "education",
-        element: <PortfolioEducation/>
+        element: <PortfolioEducation />
       },
       {
         path: "achievements",
-        element: <PortfolioAchievement/>
+        element: <PortfolioAchievement />
       },
       {
         path: "skillss",
-        element: <PortfolioSkills/>
+        element: <PortfolioSkills />
       },
       {
         path: "projectss",
-        element: <PortfolioProjects/>
+        element: <PortfolioProjects />
       },
       {
         path: "Volunteering",
-        element: <PortfolioVolunteering/>
+        element: <PortfolioVolunteering />
       },
     ]
   },
