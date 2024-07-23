@@ -33,6 +33,7 @@ import AddVolunteering from "./pages/dashboard/pages/forms/addVolunteering"
 import AddContact from "./pages/dashboard/pages/forms/addContact"
 import LearnMore from "./pages/dashboard/pages/learnMore"
 import { apiGetUserDetails } from "./services/preview";
+import AuthLayout from "./pages/dashboard/layout/authLayout"
 
 
 
