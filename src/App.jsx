@@ -44,163 +44,169 @@ const router = createBrowserRouter([
     children: [
       { path: "signin", element: <Signin /> },
 
-  {
-    element: <AuthLayout />,
-    children: [
       {
-        path: "signin",
-        element: <Signin />,
-      },
-      {
-        path: "signup",
-        element: <SignUp />,
-      },
-    ],
-  },
-
-  { path: "learnmore", element: <LearnMore /> },
-
-  {
-    path: "/dashboard", element: <Dashboardlayout />,
-    children: [
-      {
-        index: true,
-        element: <Home />
-      },
-      {
-        path: "overview",
-        element: <Overview />
+        element: <AuthLayout />,
+        children: [
+          {
+            path: "signin",
+            element: <Signin />,
+          },
+          {
+            path: "signup",
+            element: <SignUp />,
+          },
+        ],
       },
 
-      {
-        path: "profile",
-        element: <Profile />
-      },
-      {
-        path: "profile/add-profile",
-        element: <AddProfile />
-      },
+      { path: "learnmore", element: <LearnMore /> },
 
       {
-        path: "experiences",
-        element: <Experiences />
-      },
-      {
-        path: "experiences/add-experience",
-        element: <AddExperience />
-      },
+        path: "/dashboard", element: <Dashboardlayout />,
+        children: [
+          {
+            index: true,
+            element: <Home />
+          },
+          {
+            path: "overview",
+            element: <Overview />
+          },
+
+          {
+            path: "profile",
+            element: <Profile />
+          },
+          {
+            path: "profile/add-profile",
+            element: <AddProfile />
+          },
+
+          {
+            path: "experiences",
+            element: <Experiences />
+          },
+          {
+            path: "experiences/add-experience",
+            element: <AddExperience />
+          },
 
 
-      {
-        path: "skills",
-        element: <Skills />
-      },
-      {
-        path: "skills/add-skill",
-        element: <AddSkills />
-      },
+          {
+            path: "skills",
+            element: <Skills />
+          },
+          {
+            path: "skills/add-skill",
+            element: <AddSkills />
+          },
 
-      {
-        path: "projects",
-        element: <Projects />
-      },
-      {
-        path: "projects/add-project",
-        element: <AddProject />
-      },
+          {
+            path: "projects",
+            element: <Projects />
+          },
+          {
+            path: "projects/add-project",
+            element: <AddProject />
+          },
 
-      {
-        path: "achievements",
-        element: <Achievements />
-      },
-      {
-        path: "achievements/add-achievement",
-        element: <AddAchievements />
-      },
+          {
+            path: "achievements",
+            element: <Achievements />
+          },
+          {
+            path: "achievements/add-achievement",
+            element: <AddAchievements />
+          },
 
-      {
-        path: "education",
-        element: <Education />
-      },
-      {
-        path: "education/add-education",
-        element: <AddEducation />
-      },
+          {
+            path: "education",
+            element: <Education />
+          },
+          {
+            path: "education/add-education",
+            element: <AddEducation />
+          },
 
-      {
-        path: "volunteering",
-        element: <Volunteering />
-      },
-      {
-        path: "volunteering/add-volunteering",
-        element: <AddVolunteering />
-      },
+          {
+            path: "volunteering",
+            element: <Volunteering />
+          },
+          {
+            path: "volunteering/add-volunteering",
+            element: <AddVolunteering />
+          },
 
-      {
-        path: "contact",
-        element: <Contact />
-      },
-      {
-        path: "contact/add-contact",
-        element: <AddContact />
-      },
-    ]
-  },
-
-  {
-    path: "/portfolio", element: <PortfolioLayout />,
-    children: [
-      // {
-      //   index: true,
-      //   element: <PortfolioWelcome/>
-      // },
-      {
-        index: true,
-        element: <PortfolioProfile />,
-
-        loader: async ({ params }) => {
-          const username = params.username;
-          try {
-            const response = await apiGetUserDetails(username);
-            const userProfileData = response?.data.user;
-            return userProfileData;
-          } catch (error) {
-            toast.error("An error occured");
-            return null;
-          }
-        },
+          {
+            path: "contact",
+            element: <Contact />
+          },
+          {
+            path: "contact/add-contact",
+            element: <AddContact />
+          },
+        ]
       },
 
       {
-        path: "experience",
-        element: <PortfolioExperience />
-      },
-      {
-        path: "education",
-        element: <PortfolioEducation />
-      },
-      {
-        path: "achievements",
-        element: <PortfolioAchievement />
-      },
-      {
-        path: "skillss",
-        element: <PortfolioSkills />
-      },
-      {
-        path: "projectss",
-        element: <PortfolioProjects />
-      },
-      {
-        path: "Volunteering",
-        element: <PortfolioVolunteering />
-      },
-    ]
-  },
+        path: "/portfolio", element: <PortfolioLayout />,
+        children: [
+          // {
+          //   index: true,
+          //   element: <PortfolioWelcome/>
+          // },
+          {
+            index: true,
+            element: <PortfolioProfile />,
 
-])
+            loader: async ({ params }) => {
+              const username = params.username;
+              try {
+                const response = await apiGetUserDetails(username);
+                const userProfileData = response?.data.user;
+                return userProfileData;
+              } catch (error) {
+                toast.error("An error occured");
+                return null;
+              }
+            },
+          },
 
+          {
+            path: "experience",
+            element: <PortfolioExperience />
+          },
 
+          {
+            path: "education",
+            element: <PortfolioEducation />
+          },
+
+          {
+            path: "achievements",
+            element: <PortfolioAchievement />
+          },
+
+          {
+            path: "skillss",
+            element: <PortfolioSkills />
+          },
+
+          {
+            path: "projectss",
+            element: <PortfolioProjects />
+          },
+
+          {
+            path: "Volunteering",
+            element: <PortfolioVolunteering />
+          },
+        ]
+      },
+]}
+
+    ])
+  
+  
 function App() {
   return (
     <>
