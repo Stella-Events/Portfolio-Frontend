@@ -39,6 +39,10 @@ import AuthLayout from "./pages/dashboard/layout/authLayout"
 
 const router = createBrowserRouter([
   { path: "/", element: <Landing /> },
+  {
+    element: <AuthLayout />,
+    children: [
+      { path: "signin", element: <Signin /> },
 
   {
     element: <AuthLayout />,

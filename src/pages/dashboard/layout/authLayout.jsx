@@ -1,3 +1,4 @@
+
 import { Navigate, Outlet } from "react-router-dom";
 import { getToken } from "../../../services/config";
 
@@ -13,3 +14,4 @@ const AuthLayout = () => {
 };
 
 export default AuthLayout;
+
