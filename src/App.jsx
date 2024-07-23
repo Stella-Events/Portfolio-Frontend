@@ -44,109 +44,110 @@ const router = createBrowserRouter([
     children: [
       { path: "signin", element: <Signin /> },
 
-  {
-    element: <AuthLayout />,
-    children: [
       {
-        path: "signin",
-        element: <Signin />,
+        element: <AuthLayout />,
+        children: [
+          {
+            path: "signin",
+            element: <Signin />,
+          },
+          {
+            path: "signup",
+            element: <SignUp />,
+          },
+        ],
       },
+
+      { path: "learnmore", element: <LearnMore /> },
+
       {
-        path: "signup",
-        element: <SignUp />,
-      },
+        path: "/dashboard", element: <Dashboardlayout />,
+        children: [
+          {
+            index: true,
+            element: <Home />
+          },
+          {
+            path: "overview",
+            element: <Overview />
+          },
+
+          {
+            path: "profile",
+            element: <Profile />
+          },
+          {
+            path: "profile/add-profile",
+            element: <AddProfile />
+          },
+
+          {
+            path: "experiences",
+            element: <Experiences />
+          },
+          {
+            path: "experiences/add-experience",
+            element: <AddExperience />
+          },
+
+
+          {
+            path: "skills",
+            element: <Skills />
+          },
+          {
+            path: "skills/add-skill",
+            element: <AddSkills />
+          },
+
+          {
+            path: "projects",
+            element: <Projects />
+          },
+          {
+            path: "projects/add-project",
+            element: <AddProject />
+          },
+
+          {
+            path: "achievements",
+            element: <Achievements />
+          },
+          {
+            path: "achievements/add-achievement",
+            element: <AddAchievements />
+          },
+
+          {
+            path: "education",
+            element: <Education />
+          },
+          {
+            path: "education/add-education",
+            element: <AddEducation />
+          },
+
+          {
+            path: "volunteering",
+            element: <Volunteering />
+          },
+          {
+            path: "volunteering/add-volunteering",
+            element: <AddVolunteering />
+          },
+
+          {
+            path: "contact",
+            element: <Contact />
+          },
+          {
+            path: "contact/add-contact",
+            element: <AddContact />
+          },
+        ]
+      }
     ],
   },
-
-  { path: "learnmore", element: <LearnMore /> },
-
-  {
-    path: "/dashboard", element: <Dashboardlayout />,
-    children: [
-      {
-        index: true,
-        element: <Home />
-      },
-      {
-        path: "overview",
-        element: <Overview />
-      },
-
-      {
-        path: "profile",
-        element: <Profile />
-      },
-      {
-        path: "profile/add-profile",
-        element: <AddProfile />
-      },
-
-      {
-        path: "experiences",
-        element: <Experiences />
-      },
-      {
-        path: "experiences/add-experience",
-        element: <AddExperience />
-      },
-
-
-      {
-        path: "skills",
-        element: <Skills />
-      },
-      {
-        path: "skills/add-skill",
-        element: <AddSkills />
-      },
-
-      {
-        path: "projects",
-        element: <Projects />
-      },
-      {
-        path: "projects/add-project",
-        element: <AddProject />
-      },
-
-      {
-        path: "achievements",
-        element: <Achievements />
-      },
-      {
-        path: "achievements/add-achievement",
-        element: <AddAchievements />
-      },
-
-      {
-        path: "education",
-        element: <Education />
-      },
-      {
-        path: "education/add-education",
-        element: <AddEducation />
-      },
-
-      {
-        path: "volunteering",
-        element: <Volunteering />
-      },
-      {
-        path: "volunteering/add-volunteering",
-        element: <AddVolunteering />
-      },
-
-      {
-        path: "contact",
-        element: <Contact />
-      },
-      {
-        path: "contact/add-contact",
-        element: <AddContact />
-      },
-    ]
-  },
-
   {
     path: "/portfolio", element: <PortfolioLayout />,
     children: [
@@ -157,7 +158,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <PortfolioProfile />,
-
         loader: async ({ params }) => {
           const username = params.username;
           try {
@@ -195,10 +195,10 @@ const router = createBrowserRouter([
         path: "Volunteering",
         element: <PortfolioVolunteering />
       },
-    ]
+    ],
   },
 
-])
+]);
 
 
 function App() {
