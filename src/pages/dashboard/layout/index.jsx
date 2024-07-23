@@ -1,13 +1,18 @@
-import { Outlet } from "react-router-dom"
-import SideBar from "../components/sideBar"
+import { Link, Outlet, Navigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { SquareMenu } from "lucide-react";
+import { getToken } from "../../../services/config";
+import { apiGetProfile } from "../../../services/profile";
+import { toast } from "react-toastify";
+import SideBar from "../components/sideBar";
 
 
 const DashboardLayout = () => {
     const [profile, setProfile] = useState();
 
-      const token = getToken();
+    const token = getToken();
 
-    const getUserProfile = async () => {
+    const getProfile = async () => {
         try {
             const response = await apiGetProfile();
             const userProfileData = response?.data.profile;
@@ -19,20 +24,20 @@ const DashboardLayout = () => {
 
     useEffect(() => {
         if (token) {
-            getUserProfile();
+            getProfile();
         }
     }, []);
-  
-   if (!token) {
+
+    if (!token) {
         return <Navigate to="/signin" />;
-      }
+    }
 
 
     return (
-        <div className="flex ">
+        <div className="flex">
             <SideBar />
-            <div className="pl-[200px] w-full">
-            <Outlet context={[profile, setProfile]} />
+            <div className="pl-[220px] w-full">
+                <Outlet context={[profile, setProfile]} />
             </div>
         </div>
     )
