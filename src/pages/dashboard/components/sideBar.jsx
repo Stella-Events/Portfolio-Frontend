@@ -3,9 +3,13 @@ import { LogOut, Linkedin, Github, Facebook, Twitter, Youtube, Menu } from "luci
 import { motion } from "framer-motion";
 import { useState } from "react";
 import K from "./constants/index";
+import { useNavigate } from "react-router-dom";
+import { apiLogout } from "../../../../src/services/auth";
+
 
 const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+}
 
   const linkVariants = {
     hidden: { opacity: 0, x: -20 },
@@ -16,9 +20,6 @@ const SideBar = () => {
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
-import { useNavigate } from "react-router-dom";
-import { Linkedin, Github, Facebook, Twitter, Youtube } from "lucide-react";
-import { apiLogout } from "../../../../src/services/auth";
 
   const logout = async () => {
     try {
@@ -77,29 +78,8 @@ import { apiLogout } from "../../../../src/services/auth";
       </div>
       <div>
       </div>
-        <motion.button
-          className="group flex items-center gap-x-4 text-[#BDC3C7] hover:text-white transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <motion.div
-            className="p-2 rounded-full flex items-center justify-center w-8 h-8 bg-transparent transition-all duration-500"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <LogOut className="text-white" />
-          </motion.div>
-          {!isCollapsed && (
-          )}
-      </div>
-      <footer className="text-tColor py-4 mt-4">
-          <Link to="/signin" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-             LogOut
-          </Link>
-        </motion.button>
-      </div>
-
-        <div className="container mx-auto flex flex-col items-center">
+      <footer>
+<div className="container mx-auto flex flex-col items-center">
           <div className="flex gap-4 mb-2">
             <Link to="https://www.linkedin.com" target="_blank" className="rounded">
               <Linkedin className="w-5 h-5 text-gray-400 hover:text-white transition-colors duration-300" />
@@ -125,9 +105,9 @@ import { apiLogout } from "../../../../src/services/auth";
             </div>
           )}
         </div>
-      </footer>
+        </footer>
     </div>
   );
 };
 
-export default SideBar;
+  export default SideBar
