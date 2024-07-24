@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-
 import SignUp from "./pages/signUp"
 import Signin from "./pages/signIn"
 import Landing from "./pages/landing"
@@ -15,7 +14,6 @@ import AddProfile from "./pages/dashboard/pages/forms/addProfile"
 import AddSkills from "./pages/dashboard/pages/forms/addSkills"
 import Experiences from "./pages/dashboard/pages/experiences"
 import PortfolioLayout from "./pages/portfolio/layout"
-import PortfolioWelcome from "./pages/portfolio/pages/welcome"
 import PortfolioProfile from "./pages/portfolio/pages/profile"
 import PortfolioExperience from "./pages/portfolio/pages/experience"
 import PortfolioEducation from "./pages/portfolio/pages/education"
@@ -33,15 +31,24 @@ import AddVolunteering from "./pages/dashboard/pages/forms/addVolunteering"
 import AddContact from "./pages/dashboard/pages/forms/addContact"
 import LearnMore from "./pages/dashboard/pages/learnMore"
 import { apiGetUserDetails } from "./services/preview";
+import AuthLayout from "./pages/auth/layouts/authLayout"
 
 
 
 const router = createBrowserRouter([
   { path: "/", element: <Landing /> },
+  {
+    element: <AuthLayout />,
+    children: [
+      { path: "signin", element: <Signin /> },
 
-  { path: "signin", element: <Signin /> },
 
-  { path: "signup", element: <SignUp /> },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+    ],
+  },
 
   { path: "learnmore", element: <LearnMore /> },
 
@@ -132,6 +139,7 @@ const router = createBrowserRouter([
     ]
   },
 
+
   {
     path: "/portfolio", element: <PortfolioLayout />,
     children: [
@@ -160,28 +168,34 @@ const router = createBrowserRouter([
         path: "experience",
         element: <PortfolioExperience />
       },
+
       {
         path: "education",
         element: <PortfolioEducation />
       },
+
       {
         path: "achievements",
         element: <PortfolioAchievement />
       },
+
       {
         path: "skillss",
         element: <PortfolioSkills />
       },
+
       {
         path: "projectss",
         element: <PortfolioProjects />
       },
+
       {
         path: "Volunteering",
         element: <PortfolioVolunteering />
       },
     ]
   },
+
 
 ])
 
