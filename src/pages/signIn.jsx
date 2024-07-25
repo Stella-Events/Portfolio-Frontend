@@ -16,7 +16,7 @@ const Signin = () => {
 
   const { register, 
     handleSubmit, 
-    formState: { errors } 
+    formState: { errors },
   } = useForm({ reValidateMode: "onBlur", mode: "all" });
 
   const onSubmit = async (data) => {
@@ -29,7 +29,9 @@ const Signin = () => {
         password: data.password
       });
       console.log("Response: ", res.data);
+      
       localStorage.setItem("accessToken", res.data.accessToken);
+      localStorage.setItem("user", res.data.user);
 
       toast.success(res.data.message);
       setTimeout(() => {

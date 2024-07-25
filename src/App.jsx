@@ -37,18 +37,14 @@ import AuthLayout from "./pages/auth/layouts/authLayout"
 
 const router = createBrowserRouter([
   { path: "/", element: <Landing /> },
-  {
-    element: <AuthLayout />,
-    children: [
+  // {
+    // element: <AuthLayout />,
+    // children: [
       { path: "signin", element: <Signin /> },
 
-
-      {
-        path: "signup",
-        element: <SignUp />,
-      },
-    ],
-  },
+      { path: "signup", element: <SignUp />, },
+    // ],
+  // },
 
   { path: "learnmore", element: <LearnMore /> },
 

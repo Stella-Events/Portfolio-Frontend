@@ -13,6 +13,32 @@ const Landing = () => {
         />
       </div>
       <div className="relative z-10 flex flex-col md:flex-row items-center bg-[rgba(0,0,0,0.6)] p-8 rounded-lg">
+        {/* Navigation Links */}
+        <motion.div
+          className="absolute top-4 left-1/2 transform -translate-x-1/2 flex gap-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <Link
+            to="/about"
+            className="text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition-all duration-300"
+          >
+            About
+          </Link>
+          <Link
+            to="#services"
+            className="text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition-all duration-300"
+          >
+            Services
+          </Link>
+          <Link
+            to="#contact"
+            className="text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition-all duration-300"
+          >
+            Contact
+          </Link>
+        </motion.div>
         <motion.div
           className="md:w-1/2 flex items-center justify-center"
           initial={{ opacity: 0, x: -20 }}
