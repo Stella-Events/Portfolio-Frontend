@@ -8,6 +8,8 @@ import { apiGetExperiences } from "../../../services/experiences";
 import { apiGetAllVolunteering } from "../../../services/volunteering";
 import { apiGetAllProjects } from "../../../services/projects";
 import Pagelaoder from "../../../components/pagelaoder";
+import CountUp from "react-countup";
+
 
 const Overview = () => {
 
@@ -39,12 +41,12 @@ const Overview = () => {
       console.log("Total Skills: ", totalSkills)
 
       const newData = {
-       skills: apiGetSkills.length,
-        achievements:  apiGetAchievements.length,
-         education: apiGetEducation.length,
-         experiences: apiGetExperiences.length,
-         volunteering: apiGetAllVolunteering.length,
-         projects: apiGetAllProjects.length,
+       skills: totalSkills.data.Skills.length ?? 0,
+        achievements:  totalAchievements.data.Achievements.length ?? 0,
+         education: totalEducation.data.Education.length ?? 0,
+         experiences: totalExperiences.data.Experiences.length ?? 0,
+         volunteering: totalVolunteering.data.Volunteering.length ?? 0,
+         projects: totalProjects.data.Projects.length ?? 0,
       };
 
       console.log(newData);
@@ -71,7 +73,7 @@ const Overview = () => {
     <p className="text-lg text-gray-600">Manage your projects, skills, and professional achievements all in one place.</p>
   </div>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-    {K.OVERVIEW.map(({ icon, text, total, link }, index) => (
+    {K.OVERVIEW.map(({ icon, text, id, link }, index) => (
       <div
         key={index}
         className={`h-52 p-8 flex flex-col justify-between rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl ${index % 2 === 0 ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-gradient-to-r from-aColor to-tColor'}`}
@@ -82,6 +84,11 @@ const Overview = () => {
         </div>
         <div className="flex flex-col justify-end items-end mt-auto">
           <span className="text-white text-2xl font-semibold mb-4">{total}</span>
+         <CountUp 
+         className="text-2xl font-semibold"
+         start={0}
+         end={data[id]} 
+         />
           <Link
             to={link}
             className="text-white w-[200px] bg-opacity-50 bg-black py-1 px-3 rounded hover:bg-opacity-70 transition-all duration-300 text-center"
