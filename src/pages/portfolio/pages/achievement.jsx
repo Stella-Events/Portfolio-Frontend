@@ -5,14 +5,14 @@ import trophTwo from "../../../assets/images/trophTwo.jpg"
 
 const Achievement = () => {
   return (
-    <div className="bg-[url('./assets/images/paintBg.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
+    <div className="bg-[#34495e] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
       <div className="flex justify-center">
         <div className="h-[950px] w-[1050px]  bg-black/70 mr-10 ml-10 mt-20 rounded-2xl">
           {/* FIRST TWO LINES */}
           <div className="gap-y-12">
             <div className="flex flex-row items-center gap-x-5 pt-5" >
               <span className="font-bold text-1xl text-white pl-10">A C H I E V E M E N T S</span>
-              <div className="h-0.5 w-32 bg-orange-600"></div>
+              <div className="h-0.5 w-32 bg-secondary"></div>
             </div>
 
             <div className="pt-3 pl-10">

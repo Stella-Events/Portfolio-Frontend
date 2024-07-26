@@ -6,7 +6,7 @@ import project1 from "../../../assets/images/project1.jpg"
 
 const Projectss = () => {
   return (
-    <div className="bg-[url('./assets/images/paintBg.jpg')] w-full h-[1500px] bg-cover bg-no-repeat bg-fixed cursor-pointer">
+    <div className="bg-[url('./assets/images/finalBg.jpg')] w-full h-[1500px] bg-cover bg-no-repeat bg-fixed cursor-pointer">
       <div className="flex justify-center">
         <div className="h-[1350px] w-[1050px] bg-black/70 mr-10 ml-20 mt-20 rounded-2xl">
           {/* FIRST TWO LINES */}
