@@ -3,7 +3,7 @@ import VolCard from '../components/volCard'
 
 const Volunteering = () => {
   return (
-    <div className="bg-[url('./assets/images/paintBg.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
+    <div className="bg-[url('./assets/images/finalBg.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
       <div className="flex justify-center">
         <div className="h-[900px] w-[1050px] bg-black/80 mr-20 ml-10 mt-20 rounded-2xl">
           {/* FIRST TWO LINES */}

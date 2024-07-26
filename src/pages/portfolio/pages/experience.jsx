@@ -3,9 +3,9 @@ import paintBg from "../../../assets/images/paintBg.jpg"
 import ExCard from "../components/exCard"
 
 const Experience = () => {
-    return (
+    return ( 
         <div>
-            <div className="bg-[url('./assets/images/paintBg.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
+            <div className="bg-[url('./assets/images/finalBg.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
                 <div className="flex justify-center">
                     <div className="h-[930px] w-[1050px] bg-black/80 mr-10 ml-10 mt-20 rounded-2xl">
                         {/* FIRST TWO LINES */}

@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { apiLogin } from "../services/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { google } from "../assets";
+import { toast } from "react-toastify";
 
 
 
@@ -31,7 +31,7 @@ const Signin = () => {
       console.log("Response: ", res.data);
       localStorage.setItem("accessToken", res.data.accessToken);
 
-      toast.success(res.data.message);
+      toast.success(re.data.message)
       setTimeout(() => {
         navigate("/dashboard");
       }, 1000);
