@@ -101,7 +101,7 @@ const Overview = () => {
 }
 <div className="pl-[900px] mb-10">
 <Link
-            to="/portfolio"
+            to="/portfolio/:username"
             className="border border-secondary text-black font-bold py-3 px-4 rounded-lg hover:bg-secondary hover:text-[#2C3E50] transition-all duration-300"
           >
 View Portfolio        

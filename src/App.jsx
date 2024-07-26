@@ -140,27 +140,23 @@ const router = createBrowserRouter([
 
 
   {
-    path: "/portfolio", element: <PortfolioLayout />,
+    path: "/portfolio/:username", element: <PortfolioLayout />,
+    loader: async ({ params }) => {
+      const username = params.username;
+      try {
+        const response = await apiGetUserDetails(username);
+        const userProfileData = response?.data?.user;
+        return userProfileData;
+      } catch (error) {
+        toast.error("An error occurred");
+        return null;
+      }
+    },
     children: [
-      // {
-      //   index: true,
-      //   element: <PortfolioWelcome/>
-      // },
+      
       {
         index: true,
         element: <PortfolioProfile />,
-
-        loader: async ({ params }) => {
-          const username = params.username;
-          try {
-            const response = await apiGetUserDetails(username);
-            const userProfileData = response?.data.user;
-            return userProfileData;
-          } catch (error) {
-            toast.error("An error occured");
-            return null;
-          }
-        },
       },
 
       {
