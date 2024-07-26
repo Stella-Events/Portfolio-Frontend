@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import SignUp from "./pages/signUp"
 import Signin from "./pages/signIn"
-import Landing from "./pages/landing"
+import Landing from "./pages/landingPage/landing"
 import Dashboardlayout from "./pages/dashboard/layout"
 import Profile from "./pages/dashboard/pages/profile"
 import Projects from "./pages/dashboard/pages/projects"
@@ -32,6 +32,7 @@ import AddContact from "./pages/dashboard/pages/forms/addContact"
 import LearnMore from "./pages/dashboard/pages/learnMore"
 import { apiGetUserDetails } from "./services/preview";
 import AuthLayout from "./pages/auth/layouts/authLayout"
+import About from "./pages/landingPage/about"
 
 
 
@@ -47,6 +48,8 @@ const router = createBrowserRouter([
   // },
 
   { path: "learnmore", element: <LearnMore /> },
+
+  {path: "about", element: <About />},
 
   {
     path: "/dashboard", element: <Dashboardlayout />,

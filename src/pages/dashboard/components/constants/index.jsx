@@ -101,6 +101,7 @@ export default {
             icon: <Sparkles />,
             text: "Experiences",
             link: "/dashboard/experiences"
+        
         },
         {
             icon: <FileBadge />,

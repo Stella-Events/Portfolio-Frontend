@@ -38,20 +38,21 @@ const Overview = () => {
         apiGetAllProjects(),
       ]);
 
-      console.log("Total Skills: ", totalSkills)
+      console.log("Total Skills: ", totalSkills.data.skills)
 
       const newData = {
-       skills: totalSkills.data.Skills.length ?? 0,
-        achievements:  totalAchievements.data.Achievements.length ?? 0,
-         education: totalEducation.data.Education.length ?? 0,
-         experiences: totalExperiences.data.Experiences.length ?? 0,
-         volunteering: totalVolunteering.data.Volunteering.length ?? 0,
-         projects: totalProjects.data.Projects.length ?? 0,
+        skills: totalSkills.data.skills.length ?? 0,
+        projects: totalProjects.data.projects.length ?? 0,
+        achievements: totalAchievements.data.achievements.length ?? 0,
+        volunteering: totalVolunteering.data.volunteerings.length ?? 0,
+        education: totalEducation.data.education.length ?? 0,
+        experiences: totalExperiences.data.Experience.length ?? 0,
       };
 
-      console.log(newData);
+      console.log("newData ",newData);
 
       setData(newData);
+      console.log("Data ",data);
     } catch (error) {
       console.log(error)
     } finally {
@@ -73,7 +74,7 @@ const Overview = () => {
     <p className="text-lg text-gray-600">Manage your projects, skills, and professional achievements all in one place.</p>
   </div>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-    {K.OVERVIEW.map(({ icon, text, id, link }, index) => (
+    {K.OVERVIEW.map(({ icon, text, link }, index) => (
       <div
         key={index}
         className={`h-52 p-8 flex flex-col justify-between rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl ${index % 2 === 0 ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-gradient-to-r from-aColor to-tColor'}`}
@@ -81,14 +82,12 @@ const Overview = () => {
         <div className="flex justify-between items-center">
           <span className="text-white text-4xl">{icon}</span>
           <span className="text-white text-lg font-semibold">{text}</span>
-        </div>
-        <div className="flex flex-col justify-end items-end mt-auto">
-          <span className="text-white text-2xl font-semibold mb-4">{total}</span>
-         <CountUp 
-         className="text-2xl font-semibold"
+          <CountUp 
+         className="text-2xl font-semibold text-white"
          start={0}
-         end={data[id]} 
+         end={data[text.toLowerCase()]} 
          />
+        </div>
           <Link
             to={link}
             className="text-white w-[200px] bg-opacity-50 bg-black py-1 px-3 rounded hover:bg-opacity-70 transition-all duration-300 text-center"
@@ -96,7 +95,6 @@ const Overview = () => {
             View More
           </Link>
         </div>
-      </div>
     ))}
   </div>
 </div>
