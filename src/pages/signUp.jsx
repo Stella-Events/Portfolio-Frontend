@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../assets";
-import { useForm, useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { apiCheckUsernameExists, apiSignup } from "../services/auth";
 import { toast } from "react-toastify"
@@ -15,12 +15,12 @@ const SignUp = () => {
   const [isUsernameLoading, setIsUsernameLoading] = useState(false)
   
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors }
+    formState: { errors },
   } = useForm({ reValidateMode: "onBlur", mode: "all" });
 
   const checkUserName = async (username) => {
@@ -33,7 +33,6 @@ const SignUp = () => {
       if (user) {
         setUsernameNotAvailable(true);
         setUsernameAvailable(false);
-
       }
       else {
         setUsernameAvailable(true);
@@ -43,8 +42,7 @@ const SignUp = () => {
     } catch (error) {
       console.log(error);
       toast.error("An error occured!");
-    }
-    finally {
+    } finally {
       isUsernameLoading(false);
     }
   };
@@ -57,7 +55,7 @@ const SignUp = () => {
           if (userNameWatch) {
            await checkUserName(userNameWatch)
           }
-        }, 1000)
+        }, 1000);
 
         debouncedSearch();
 
@@ -86,9 +84,7 @@ const SignUp = () => {
       console.log(res.data);
       toast.success(res.data);
 
-      setTimeout(() => {
-        navigate("/signin")
-      }, 5000);
+      navigate("/signin")
 
     } catch (error) {
       console.log(error);
@@ -124,7 +120,10 @@ const SignUp = () => {
                   id="firstName"
                   className="p-2 border border-gray-300 rounded"
                   placeholder="Enter your first name"
-                  {...register("firstName", { required: "First name is required" })}
+                  {...register("firstName", { required: "First name is required",  minLength: {
+                    value: 2,
+                    message: "length must be more than 2 characters",
+                  }, })}
                 />
                 {errors.firstName && <p className="text-red-500">{errors.firstName.message}</p>}
               </div>
@@ -135,7 +134,10 @@ const SignUp = () => {
                   id="lastName"
                   className="p-2 border border-gray-300 rounded"
                   placeholder="Enter your last name"
-                  {...register("lastName", { required: "Last name is required" })}
+                  {...register("lastName", { required: "Last name is required",  minLength: {
+                    value: 2,
+                    message: "length must be more than 2 characters",
+                  },  })}
                 />
                 {errors.lastName && <p className="text-red-500">{errors.lastName.message}</p>}
               </div>
@@ -178,7 +180,11 @@ const SignUp = () => {
                   pattern: {
                     value: /^[a-zA-Z0-9_]+$/,
                     message: "Username can only contain letters, numbers, and underscores"
-                  }
+                  },
+                  minLength: {
+                    value: 2,
+                    message: "length must be more than 2 characters",
+                  },
                 })}
               />
               {errors.username && (<p className="text-red-500">{errors.username.message}</p>

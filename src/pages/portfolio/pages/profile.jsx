@@ -5,12 +5,19 @@ import paintBg from "../../../assets/images/paintBg.jpg"
 import gitWhite from "../../../assets/images/gitWhite.png"
 import twitter from "../../../assets/images/twitter.png"
 import linkedIn from "../../../assets/images/linkedIn.png"
+import { useOutletContext } from "react-router-dom";
 
 const Profile = () => {
+    const data = useOutletContext();
+
     return (
         <div className="bg-[url('./assets/images/paintBg.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
             <div className="flex justify-center">
+            
             <div className="h-[930px] w-[1050px] bg-black/70 mr-10 ml-10 mt-20 rounded-2xl">
+                <p className="text-white">{data.firstName}</p>
+                <p className="text-white">{data.lastName}</p>
+                <p className="text-white">{data.otherNames}</p>
                 {/* FIRST TWO LINES */}
                 <div className="gap-y-12">
                     <div className="flex flex-row items-center gap-x-5 pt-10" >
@@ -41,15 +48,15 @@ const Profile = () => {
                         {/* LISTED ITEMS */}
                         <div className="flex flex-row justify-evenly">
                             <div className="flex flex-col gap-y-5">
-                                <div className="text-white flex flex-row gap-5 font-bold"> <Cake className="text-orange-600" />Birthday :<div className="font-thin">14th July 2024</div></div>
-                                <div className="text-white flex flex-row gap-5 font-bold"> <ArrowRight className="text-orange-600" />Sex :<div className="font-thin">14th July 2024</div></div>
-                                <div className="text-white flex flex-row gap-5 font-bold"> <Handshake className="text-orange-600" />Marital Status :<div className="font-thin">14th July 2024</div></div>
+                                <div className="text-white flex flex-row gap-5 font-bold"> <Cake className="text-orange-600" />Birthday :<div className="font-thin">{data.userProfile.dateOfBirth}</div></div>
+                                <div className="text-white flex flex-row gap-5 font-bold"> <ArrowRight className="text-orange-600" />Sex :<div className="font-thin">{data.userProfile.sex}</div></div>
+                                <div className="text-white flex flex-row gap-5 font-bold"> <Handshake className="text-orange-600" />Marital Status :<div className="font-thin">{data.userProfile.maritalStatus}</div></div>
                             </div>
 
                             <div className="flex flex-col gap-y-5">
-                                <div className="text-white flex flex-row gap-5 font-bold"> <SmartphoneNfc className="text-orange-600" />Contact :<div className="font-thin">14th July 2024</div></div>
-                                <div className="text-white flex flex-row gap-5 font-bold"> <Mail className="text-orange-600" />email :<div className="font-thin">14th July 2024</div></div>
-                                <div className="text-white flex flex-row gap-5 font-bold"> <BookUser className="text-orange-600" />Address:<div className="font-thin">14th July 2024</div></div>
+                                <div className="text-white flex flex-row gap-5 font-bold"> <SmartphoneNfc className="text-orange-600" />Contact :<div className="font-thin">{data.userProfile.contact}</div></div>
+                                <div className="text-white flex flex-row gap-5 font-bold"> <Mail className="text-orange-600" />email :<div className="font-thin">{data.email}</div></div>
+                                <div className="text-white flex flex-row gap-5 font-bold"> <BookUser className="text-orange-600" />Address:<div className="font-thin">{data.userProfile.address}</div></div>
                             </div>
                         </div>
                     </div>

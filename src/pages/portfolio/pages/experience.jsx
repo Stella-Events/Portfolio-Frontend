@@ -1,8 +1,13 @@
 import paintBg from "../../../assets/images/paintBg.jpg"
 
 import ExCard from "../components/exCard"
+import { useOutletContext } from "react-router-dom";
+
+
 
 const Experience = () => {
+    const data = useOutletContext();
+    console.log("🚀 ~ PortfolioProfile ~ data:", data);  // Debugging line
     return (
         <div>
             <div className="bg-[url('./assets/images/paintBg.jpg')] w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">

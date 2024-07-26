@@ -16,8 +16,16 @@ const Signin = () => {
 
   const { register, 
     handleSubmit, 
-    formState: { errors } 
+    formState: { errors },
   } = useForm({ reValidateMode: "onBlur", mode: "all" });
+
+  const addToLocalStorage = (accessToken, user) => {
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("firstName", user.firstName);
+    localStorage.setItem("lastName", user.lastName);
+    localStorage.setItem("userName", user.username);
+  };
+
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -29,7 +37,9 @@ const Signin = () => {
         password: data.password
       });
       console.log("Response: ", res.data);
-      localStorage.setItem("accessToken", res.data.accessToken);
+      
+      addToLocalStorage(res.data.accessToken, res.data.user);
+
 
       toast.success(res.data.message);
       setTimeout(() => {

@@ -100,31 +100,27 @@ export default {
         {
             icon: <Sparkles />,
             text: "Experiences",
-            total: 19,
             link: "/dashboard/experiences"
+        
         },
         {
             icon: <FileBadge />,
             text: "Achievements",
-            total: 10,
             link: "/dashboard/achievements"
         },
         {
             icon: <UserCog />,
             text: "Skills",
-            total: 23,
             link: "/dashboard/skills"
         },
         {
             icon: <Target />,
             text: "Projects",
-            total: 30,
             link: "/dashboard/projects"
         },
         {
             icon: <SmartphoneNfc />,
             text: "Contact Details",
-            total: 4,
             link: "/dashboard/contact"
         }
     ],

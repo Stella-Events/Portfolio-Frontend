@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import SignUp from "./pages/signUp"
 import Signin from "./pages/signIn"
-import Landing from "./pages/landing"
+import Landing from "./pages/landingPage/landing"
 import Dashboardlayout from "./pages/dashboard/layout"
 import Profile from "./pages/dashboard/pages/profile"
 import Projects from "./pages/dashboard/pages/projects"
@@ -32,6 +32,7 @@ import AddContact from "./pages/dashboard/pages/forms/addContact"
 import LearnMore from "./pages/dashboard/pages/learnMore"
 import { apiGetUserDetails } from "./services/preview";
 import AuthLayout from "./pages/auth/layouts/authLayout"
+import About from "./pages/landingPage/about"
 
 
 
@@ -42,15 +43,13 @@ const router = createBrowserRouter([
     children: [
       { path: "signin", element: <Signin /> },
 
-
-      {
-        path: "signup",
-        element: <SignUp />,
-      },
+      { path: "signup", element: <SignUp />, },
     ],
   },
 
   { path: "learnmore", element: <LearnMore /> },
+
+  {path: "about", element: <About />},
 
   {
     path: "/dashboard", element: <Dashboardlayout />,
@@ -141,27 +140,23 @@ const router = createBrowserRouter([
 
 
   {
-    path: "/portfolio", element: <PortfolioLayout />,
+    path: "/portfolio/:username", element: <PortfolioLayout />,
+    loader: async ({ params }) => {
+      const username = params.username;
+      try {
+        const response = await apiGetUserDetails(username);
+        const userProfileData = response?.data?.user;
+        return userProfileData;
+      } catch (error) {
+        toast.error("An error occurred");
+        return null;
+      }
+    },
     children: [
-      // {
-      //   index: true,
-      //   element: <PortfolioWelcome/>
-      // },
+      
       {
         index: true,
         element: <PortfolioProfile />,
-
-        loader: async ({ params }) => {
-          const username = params.username;
-          try {
-            const response = await apiGetUserDetails(username);
-            const userProfileData = response?.data.user;
-            return userProfileData;
-          } catch (error) {
-            toast.error("An error occured");
-            return null;
-          }
-        },
       },
 
       {

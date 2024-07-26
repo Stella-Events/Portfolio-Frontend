@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import K from "./constants/index"
 
-const Sidenav = () => {
+const Sidenav = ({username}) => {
+    console.log(username)
     return (
         <div>
             <div className="flex mt-0 ">

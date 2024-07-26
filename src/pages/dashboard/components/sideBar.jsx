@@ -1,12 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { LogOut, Linkedin, Github, Facebook, Twitter, Youtube, Menu } from "lucide-react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { apiLogout } from "../../../../src/services/auth";
 import { useState } from "react";
 import K from "./constants/index";
 
 const SideBar = () => {
+  
+  const navigate = useNavigate();
+
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const linkVariants = {
@@ -75,6 +77,7 @@ const SideBar = () => {
           className="group flex items-center gap-x-4 text-[#BDC3C7] hover:text-white transition-all duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
+          onClick={logout}
         >
           <motion.div
             className="p-2 rounded-full flex items-center justify-center w-8 h-8 bg-transparent transition-all duration-500"
@@ -85,7 +88,7 @@ const SideBar = () => {
           </motion.div>
           {!isCollapsed && (
             <Link to="/signin" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Sign Out
+              Log Out
             </Link>
           )}
         </motion.button>
@@ -122,5 +125,5 @@ const SideBar = () => {
     </div>
   );
 
-};
+ };
 export default SideBar;

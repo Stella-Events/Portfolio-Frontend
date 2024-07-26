@@ -10,37 +10,37 @@ export default {
         {
            icon: <CircleUser/>,
             text: "Profile",
-            link: "/portfolio"
+            link: "/portfolio/:username"
         },
         {
            icon: <CandlestickChart/>,
             text: "Experience",
-            link: "/portfolio/experience"
+            link: "/portfolio/:username/experience"
         },
         {
             icon: <Newspaper/>,
             text: "Education",
-            link: "/portfolio/education"
+            link: "/portfolio/:username/education"
         },
         {
             icon: <Medal/>,
             text: "Achievements",
-            link: "/portfolio/achievements"
+            link: "/portfolio/:username/achievements"
         },
         {
             icon: <FileCheck2/>,
             text: "Skills",
-            link: "/portfolio/skillss"
+            link: "/portfolio/:username/skillss"
         },
         {
             icon: <Power/>,
             text: "Projects",
-            link: "/portfolio/projectss"
+            link: "/portfolio/:username/projectss"
         },
         {
             icon: <HandHeart/>,
             text: "Volunteering",
-            link: "/portfolio/volunteering"
+            link: "/portfolio/:username/volunteering"
         },
        
     ] 
