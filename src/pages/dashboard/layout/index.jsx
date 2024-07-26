@@ -1,43 +1,48 @@
 import { Link, Outlet, Navigate } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { SquareMenu } from "lucide-react";
-import { getToken } from "../../../services/config";
-import { apiGetProfile } from "../../../services/profile";
-import { toast } from "react-toastify";
 import SideBar from "../components/sideBar";
+import { getDetails } from "../../../services/config";
 
 
 const DashboardLayout = () => {
-    const [profile, setProfile] = useState();
+    const [user, setUser] = useState();
 
-    const token = getToken();
-
-    const getProfile = async () => {
-        try {
-            const response = await apiGetProfile();
-            const userProfileData = response?.data.profile;
-            setProfile(userProfileData);
-        } catch (error) {
-            toast.error("An error occured");
-        }
-    };
-
+    const { token, firstName, lastName, userName } = getDetails();
+  
     useEffect(() => {
-        if (token) {
-            getProfile();
-        }
+      if (token) {
+        setUser({
+          firstName,
+          lastName,
+          userName,
+        });
+      }
     }, []);
+
 
     if (!token) {
         return <Navigate to="/signin" />;
     }
 
+    // const getAvatar = () => {
+    //     if (!user) return "N/A";
+    //     const initials = `${firstName[0]}${lastName[0]}`;
+    //     return initials.toUpperCase();
+    //   };
 
     return (
         <div className="flex">
             <SideBar />
+            {/* <Link
+            to="/dashboard/profile"
+            className="ml-auto bg-pink p-4 rounded-full cursor-pointer"
+          >
+            <span className="text-xl font-semibold text-white">
+              {getAvatar()}
+            </span>
+          </Link> */}
             <div className="pl-[220px] w-full">
-                <Outlet context={[profile, setProfile]} />
+                <Outlet  context={[user, setUser]} />
             </div>
         </div>
     )
