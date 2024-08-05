@@ -1,31 +1,47 @@
 import { useForm } from "react-hook-form";
-import { apiAddSkill } from "../../../../services/skills";
+import { apiAddSkill, apiUpdateSkill } from "../../../../services/skills"; 
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loader from "../../../../components/loader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-
-const AddSkills = () => {
+const EditSkill = () => {
+  const { id } = useParams();
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchSkill = async () => {
+      try {
+        const res = await apiAddSkill(id);
+        const { name, levelOfProficiency } = res.data.skill;
+        setValue("name", name);
+        setValue("proficiency", levelOfProficiency.charAt(0).toUpperCase() + levelOfProficiency.slice(1));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchSkill();
+  }, [id, setValue]);
 
   const onSubmit = async (data) => {
     console.log(data);
     setIsSubmitting(true);
     try {
-      const res = await apiAddSkill({
+      const res = await apiUpdateSkill(id, {
         name: data.name,
-        levelOfProficiency: data.proficiency.toLowerCase(),  //toLowerCase() makes it convert text to lowercase to match the backend
+        levelOfProficiency: data.proficiency.toLowerCase(),
       });
 
       console.log(res.data);
-      toast.success(res.data.message);    //the message you will see when you add skill sucessfully
+      toast.success(res.data.message);
       
       setTimeout(() => {
         navigate("/dashboard/skills")
@@ -33,7 +49,7 @@ const AddSkills = () => {
 
     } catch (error) {
       console.log(error);
-      toast.error("An error occured")      //when there's an error
+      toast.error("An error occurred");
     } finally {
       setIsSubmitting(false);
     }
@@ -41,11 +57,10 @@ const AddSkills = () => {
 
   return (
     <div className="p-[100px] w-[500px]">
-      <h2 className="text-2xl font-bold mb-6 text-center">Add New Skill</h2>
-      <form onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6">
+      <h2 className="text-2xl font-bold mb-6 text-center">Edit Skill</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="flex flex-col">
-          <label htmlFor="" className="text-lg font-medium">Skill Name</label>
+          <label htmlFor="name" className="text-lg font-medium">Skill Name</label>
           <input
             type="text"
             {...register("name", { required: "name is required" })}
@@ -55,9 +70,9 @@ const AddSkills = () => {
         </div>
         <div className="flex flex-col">
           <label htmlFor="proficiency" className="text-lg font-medium">Level of Proficiency</label>
-          <select  {...register("proficiency", { required: "proficiency is required" })}
+          <select
+            {...register("proficiency", { required: "proficiency is required" })}
             id="proficiency"
-            type="proficiency"
             className="p-2 border border-gray-300 rounded"
           >
             <option>Beginner</option>
@@ -71,9 +86,7 @@ const AddSkills = () => {
             type="submit"
             className="py-3 px-6 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
           >
-            {
-              isSubmitting ? <Loader /> : "Add Skill"
-            }
+            {isSubmitting ? <Loader /> : "Edit Skill"}
           </button>
         </div>
       </form>
@@ -81,4 +94,4 @@ const AddSkills = () => {
   );
 };
 
-export default AddSkills;
+export default EditSkill;
