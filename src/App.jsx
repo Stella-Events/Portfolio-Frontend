@@ -33,6 +33,9 @@ import LearnMore from "./pages/dashboard/pages/learnMore"
 import { apiGetUserDetails } from "./services/preview";
 import AuthLayout from "./pages/auth/layouts/authLayout"
 import About from "./pages/landingPage/about"
+import { toast } from "react-toastify"
+import { AnimatePresence } from "framer-motion"
+import PageTransition from "./pages/portfolio/components/transition"
 
 
 
@@ -49,7 +52,7 @@ const router = createBrowserRouter([
 
   { path: "learnmore", element: <LearnMore /> },
 
-  {path: "about", element: <About />},
+  { path: "about", element: <About /> },
 
   {
     path: "/dashboard", element: <Dashboardlayout />,
@@ -140,7 +143,15 @@ const router = createBrowserRouter([
 
 
   {
-    path: "/portfolio/:username", element: <PortfolioLayout />,
+    path: "/portfolio/:username",
+    element: (
+      <AnimatePresence>
+        <PageTransition>
+          <PortfolioLayout />
+        </PageTransition>
+      </AnimatePresence>
+    ),
+
     loader: async ({ params }) => {
       const username = params.username;
       try {
@@ -153,7 +164,7 @@ const router = createBrowserRouter([
       }
     },
     children: [
-      
+
       {
         index: true,
         element: <PortfolioProfile />,
