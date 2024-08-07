@@ -47,7 +47,7 @@ const Experience = () => {
                     </div>
                 </div>
 
-                <div className="text-black font-bold mt-6 animate-bounce text-end px-4 lg:px-16 italic">PoweredBy PortfolioHive</div>
+                <div className="text-black font-bold mt-4 animate-bounce text-end px-4 lg:px-16 italic">PoweredBy PortfolioHive</div>
             </div>
         </div>
     )

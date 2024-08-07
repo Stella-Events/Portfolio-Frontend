@@ -1,11 +1,28 @@
 import AwardsCard from "../components/awardsCard"
 import { useOutletContext } from "react-router-dom";
+import { motion } from "framer-motion";
 
 
 const Achievement = () => {
 
   const data = useOutletContext();
   console.log("🚀 ~ PortfolioProfile ~ data:", data);
+
+  const variants = {
+    hidden: (direction) => ({
+      opacity: 0,
+      x: direction > 0 ? 100 : -100,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 20,
+      },
+    },
+  };
 
 
   return (
@@ -32,7 +49,14 @@ const Achievement = () => {
           <div className="flex flex-col items-center">
             {/* TOP-ROW */}
             <div className="flex flex-wrap justify-center gap-5 p-5">
-              {data.achievements?.map((achievements) => (
+              {data.achievements?.map((achievements, index) => (
+                <motion.div
+                key={achievements.id}
+                custom={index % 2 === 0 ? 5 : -5}
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+              >
                 <AwardsCard
                   key={achievements.id}
                   image={achievements.image} 
@@ -41,13 +65,14 @@ const Achievement = () => {
                   date={achievements.date}
                   nameOfInstitution={achievements.nameOfInstitution} 
                   />
+                   </motion.div>
               ))
               }
             </div>
           </div>
         </div>
       </div>
-      <div className="text-black font-bold mt-6 animate-bounce text-end mr-4 lg:mr-16 italic"> PoweredBy PortfolioHive</div>
+      <div className="text-black font-bold mt-4 animate-bounce text-end mr-4 lg:mr-16 italic"> PoweredBy PortfolioHive</div>
     </div>
   )
 }
