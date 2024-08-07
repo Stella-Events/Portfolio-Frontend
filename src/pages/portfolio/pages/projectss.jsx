@@ -12,7 +12,7 @@ const Projectss = () => {
   const variants = {
     hidden: (direction) => ({
       opacity: 0,
-      x: direction > 0 ? 100 : -100, // Slide from left or right
+      x: direction > 0 ? 100 : -100,
     }),
     visible: {
       opacity: 1,
@@ -26,17 +26,17 @@ const Projectss = () => {
   };
 
   return (
-    <div className="bg-white w-full h-[1500px] bg-cover bg-no-repeat bg-fixed cursor-pointer">
-      <div className="flex justify-center">
-        <div className="h-[1350px] w-[1050px] bg-black mr-10 ml-20 mt-20 rounded-2xl">
+    <div className="bg-white w-full min-h-screen bg-cover bg-no-repeat bg-fixed cursor-pointer">
+      <div className="flex justify-center px-4 md:px-10">
+        <div className="w-full max-w-screen-lg bg-black my-10 p-8 md:p-14 rounded-2xl shadow-2xl">
           {/* FIRST TWO LINES */}
           <div className="gap-y-12">
-            <div className="flex flex-row items-center gap-x-5 pt-10" >
-              <span className="font-bold text-1xl text-white pl-10">P R O J E C T S</span>
-              <div className="h-0.5 w-32 bg-[#8e44ad]"></div>
+            <div className="flex flex-row items-center gap-x-5">
+              <span className="font-bold text-xl md:text-2xl text-white">P R O J E C T S</span>
+              <div className="h-0.5 w-24 md:w-32 bg-[#8e44ad]"></div>
             </div>
             <div className="pt-3 pl-10">
-              <span className="text-white text-4xl font-bold">LEARN MORE ABOUT ME</span>
+              <span className="text-white text-2xl md:text-4xl font-bold">LEARN MORE ABOUT ME</span>
             </div>
 
             <div className="flex flex-col justify-center items-center mt-10 gap-y-10">
@@ -44,7 +44,7 @@ const Projectss = () => {
 
                 <motion.div
                      key={projects.id}
-                     custom={index % 2 === 0 ? 5 : -5} // Alternates between left and right slide
+                     custom={index % 2 === 0 ? 5 : -5} 
                      initial="hidden"
                      animate="visible"
                      variants={variants}
@@ -68,13 +68,10 @@ const Projectss = () => {
               ))
               }
             </div>
-            {/* <div className="flex justify-center mt-5">
-              <div className="h-0.5 w-[850px] bg-white"></div>
-            </div> */}
           </div>
         </div>
       </div>
-      <div className="text-black font-bold mt-6 animate-bounce text-end mr-16 italic"> PoweredBy PortfolioHive</div>
+      <div className="text-black font-bold mt-4 animate-bounce text-end mr-4 md:mr-16 italic"> PoweredBy PortfolioHive</div>
     </div>
   )
 }

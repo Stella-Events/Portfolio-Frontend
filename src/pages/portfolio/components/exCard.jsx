@@ -5,14 +5,14 @@ const ExCard = ({companyName, role, responsibility, skills, description, startDa
     <div>
          <div>
             <div className="flex flex-row">
-                <div className="flex flex-col ml-2 mt-5">
+                <div className="flex flex-col ml-2">
                     <div className="h-5 w-5 rounded-full bg-[#8e44ad]"></div>
-                    <div className="w-0.5 h-[340px] bg-white ml-2"></div>
+                    <div className="w-0.5 h-[360px] bg-white ml-2"></div>
                 </div>
 
-                <div className="flex flex-col ml-10 mt-5 gap-y-10">
+                <div className="flex flex-col ml-4 gap-y-10">
 
-                    <div className="h-[320px] w-96 bg-purple-600/0 border-white border-2 rounded-xl flex justify-center items-center flex-col mt-5">
+                    <div className="h-[350px] w-96 bg-purple-600/0 border-white border-2 rounded-xl flex justify-center items-center flex-col mt-5">
                         <div className=" text-2xl font-bold text-center text-[#8e44ad] italic ">{companyName}</div>
                         <div className="flex flex-col items-start gap-y-3 pt-5">
                         <div className="text-white text-1xl font-bold text-center italic pl-3 flex flex-row gap-x-2"><Component className="size-4" />{role}</div>

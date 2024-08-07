@@ -5,10 +5,34 @@ import twitter from "../../../assets/images/twitter.png"
 import linkedIn from "../../../assets/images/linkedIn.png"
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
 
 
 const Profile = () => {
     const data = useOutletContext();
+
+    const [progress, setProgress] = useState({
+        css: 0,
+        html: 0,
+        javascript: 0,
+        react: 0,
+        mongodb: 0,
+    });
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setProgress({
+                css: 90,
+                html: 90,
+                javascript: 85,
+                react: 90,
+                mongodb: 90,
+            });
+        }, 500);
+
+        return () => clearTimeout(timeout);
+    }, []);
+
 
     return (
         <div className="bg-white/70 w-full min-h-screen bg-cover bg-no-repeat bg-fixed p-4 md:p-10">
@@ -35,8 +59,8 @@ const Profile = () => {
                     {/* P-PIC AND TEXT */}
                     <div className="flex flex-col md:flex-row pt-10 gap-y-6 md:gap-y-0 pl-5">
                         <div className="flex-shrink-0">
-                            <img src={data.userProfile.profilePicture} alt="profile picture of developer in view" 
-                            className="w-full md:w-[300px] h-auto object-contain rounded-lg" />
+                            <img src={data.userProfile.profilePicture} alt="profile picture of developer in view"
+                                className="w-full md:w-[300px] h-auto object-contain rounded-lg" />
                         </div>
 
                         <div className="flex flex-col gap-y-6 pl-0 md:pl-10">
@@ -72,36 +96,45 @@ const Profile = () => {
                     <div className="flex flex-col md:flex-row pt-10 gap-y-6 md:gap-y-0 justify-between">
                         <div className="flex flex-col gap-y-3 w-full md:w-1/2">
                             <div className="flex flex-col">
-                                <span className="text-white text-start">CSS 90%</span>
+                                <span className="text-white text-start">CSS{progress.css}%</span>
                                 <div className="h-1 w-[388px] bg-white text-white relative">
-                                    <div className="h-1 w-[310px] bg-[#EA580C]">
-                                        {/* <div className="h-10 w-10 bg-[#EA580C] rounded-full absolute 
-                                    right-52 -bottom-3 text-white flex items-center justify-center">98%</div> */}
+                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
+                                        style={{ width: `${progress.css}%` }}>
+
                                     </div>
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-white text-start">HTML 90%</span>
-                                <div className="h-1 w-[388px] bg-white text-white">
-                                    <div className="h-1 w-[310px] bg-[#EA580C]"></div>
+                                <span className="text-white text-start">HTML {progress.html}%</span>
+                                <div className="h-1 w-[388px] bg-white relative">
+                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
+                                        style={{ width: `${progress.html}%` }}>
+
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-white text-start">JavaScript 85%</span>
-                                <div className="h-1 w-[388px] bg-white text-white">
-                                    <div className="h-1 w-[270px] bg-[#EA580C]"></div>
+                                <span className="text-white text-start">JavaScript {progress.javascript}%</span>
+                                <div className="h-1 w-[388px] bg-white relative">
+                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
+                                        style={{ width: `${progress.javascript}%` }}>
+                                    </div>
                                 </div>
                             </div>
+
                             <div className="flex flex-col">
-                                <span className="text-white text-start">REACT 90%</span>
-                                <div className="h-1 w-[388px] bg-white text-white">
-                                    <div className="h-1 w-[310px] bg-[#EA580C]"></div>
+                                <span className="text-white text-start">REACT {progress.react}%</span>
+                                <div className="h-1 w-[388px] bg-white relative">
+                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
+                                        style={{ width: `${progress.react}%` }}></div>
                                 </div>
                             </div>
+
                             <div className="flex flex-col">
-                                <span className="text-white text-start">Mongo DB 90%</span>
-                                <div className="h-1 w-[388px] bg-white text-white">
-                                    <div className="h-1 w-[310px] bg-[#EA580C]"></div>
+                                <span className="text-white text-start">Mongo DB {progress.mongodb}%</span>
+                                <div className="h-1 w-[388px] bg-white relative">
+                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
+                                        style={{ width: `${progress.mongodb}%` }}></div>
                                 </div>
                             </div>
                         </div>
@@ -115,11 +148,11 @@ const Profile = () => {
 
                     {/* SOCIALS */}
                     <div className="pl-10 pt-20 gap-10 flex items-center justify-center cursor-pointer">
-                        <Link 
-                        
-                        to="/github.com"
+                        <Link
 
-                        className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
+                            to="/github.com"
+
+                            className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
 
                             <div>
                                 <img src={gitWhite} alt="icon-of-github-logo" className="h-14 w-14" />
@@ -130,11 +163,11 @@ const Profile = () => {
                             </span>
                         </Link>
 
-                        <Link 
-                        
-                        to = "x.com"
-                        
-                        className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
+                        <Link
+
+                            to="x.com"
+
+                            className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
                             <div>
                                 <img src={twitter} alt="icon-of-twitter-logo" className="h-10 w-10" />
                             </div>
@@ -143,11 +176,11 @@ const Profile = () => {
                             </span>
                         </Link>
 
-                        <Link 
+                        <Link
 
-                        to="linkedin.com"
-                        
-                        className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
+                            to="linkedin.com"
+
+                            className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
                             <div>
                                 <img src={linkedIn} alt="icon-of-github-logo" className="h-14 w-14" />
                             </div>
@@ -161,7 +194,7 @@ const Profile = () => {
                 </div>
             </div>
 
-            <div className="text-black font-bold mt-6 animate-bounce text-end mr-16 italic"> PoweredBy PortfolioHive</div>
+            <div className="text-black font-bold mt-4 animate-bounce text-end mr-16 italic"> PoweredBy PortfolioHive</div>
         </div>
     )
 }

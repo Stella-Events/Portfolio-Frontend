@@ -12,7 +12,7 @@ const Skillss = () => {
   const variants = {
     hidden: (direction) => ({
       opacity: 0,
-      x: direction > 0 ? 100 : -100, // Slide from left or right
+      x: direction > 0 ? 100 : -100,
     }),
     visible: {
       opacity: 1,
@@ -26,9 +26,9 @@ const Skillss = () => {
   };
 
   return (
-    <div className="bg-white w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
-      <div className="flex justify-center">
-        <div className="h-[900px] w-[1050px] bg-black mr-20 ml-10 mt-20 rounded-2xl shadow-2xl">
+    <div className="bg-white w-full min-h-screen bg-cover bg-no-repeat bg-fixed">
+      <div className="flex justify-center px-4 md:px-10">
+        <div className="w-full max-w-screen-lg bg-black my-10 p-8 md:p-14 rounded-2xl shadow-2xl">
           {/* FIRST TWO LINES */}
           <div className="gap-y-12">
             <div className="flex flex-row items-center gap-x-5 pt-10" >
@@ -43,14 +43,14 @@ const Skillss = () => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-y-5 mt-16">
-              <div className="flex justify-center gap-x-5">
+            <div className="flex flex-col gap-y-5 mt-12 md:mt-16">
+              <div className="flex justify-center">
 
-                <div className="grid grid-rows-2 grid-flow-col gap-x-10 gap-y-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
                   {data.skills?.map((skills, index) => (
                      <motion.div
                      key={skills.id}
-                     custom={index % 2 === 0 ? 5 : -5} // Alternates between left and right slide
+                     custom={index % 2 === 0 ? 5 : -5}
                      initial="hidden"
                      animate="visible"
                      variants={variants}
@@ -59,7 +59,7 @@ const Skillss = () => {
                       key={skills.id}
                       name={skills.name}
                       levelOfProficiency={skills.levelOfProficiency}
-                      className="text-white font-bold text-2xl"
+                       className="text-white font-bold text-xl md:text-2xl"
                     />
                     </motion.div>
                   ))}
@@ -70,7 +70,7 @@ const Skillss = () => {
           </div>
         </div>
       </div>
-      <div className="text-black font-bold mt-6 animate-bounce text-end mr-16 italic"> PoweredBy PortfolioHive</div>
+      <div className="text-black font-bold mt-4 animate-bounce text-end mr-4 md:mr-16 italic"> PoweredBy PortfolioHive</div>
     </div>
   )
 }
