@@ -32,7 +32,7 @@ const Projectss = () => {
           {/* FIRST TWO LINES */}
           <div className="gap-y-12">
             <div className="flex flex-row items-center gap-x-5">
-              <span className="font-bold text-xl md:text-2xl text-white">P R O J E C T S</span>
+              <span className="font-bold text-1xl text-white pl-10">P R O J E C T S</span>
               <div className="h-0.5 w-24 md:w-32 bg-[#8e44ad]"></div>
             </div>
             <div className="pt-3 pl-10">
@@ -52,12 +52,9 @@ const Projectss = () => {
 
                 <ProjectCard
                   key={projects.id}
-                  image={projects.image}
+                  image={`https://savefiles.org/${projects.image}?shareable_link=327`} 
                   projectName={projects.projectName}
-                  skillone={projects.skills}
-                  skilltwo={projects.skills}
-                  skillthree={projects.skills}
-                  skillfour={projects.skills}
+                  skills={projects.skills}
                   description={projects.description}
                   contributors={projects.contributors}
                   nameOfInstitution={projects.nameOfInstitution}

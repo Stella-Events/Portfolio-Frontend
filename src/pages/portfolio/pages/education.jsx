@@ -1,11 +1,28 @@
 import React from 'react'
 import EduCard from '../components/eduCard'
 import { useOutletContext } from 'react-router-dom';
+import { motion } from "framer-motion";
 
 const Education = () => {
 
   const data = useOutletContext();
-    console.log("🚀 ~ PortfolioProfile ~ data:", data); 
+  console.log("🚀 ~ PortfolioProfile ~ data:", data);
+
+  const variants = {
+    hidden: (direction) => ({
+      opacity: 0,
+      x: direction > 0 ? 100 : -100,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 20,
+      },
+    },
+  };
 
   return (
     <div className="bg-white w-full h-[1080px] bg-cover bg-no-repeat bg-fixed">
@@ -24,24 +41,35 @@ const Education = () => {
 
           {/* EDUCATION */}
 
-          <div className="flex flex-row">
-            <div>
-            {data.education?.map((education) => (
-              <EduCard
-              key={education.id}
-                schoolName={education.schoolName}
-                program={education.program}
-                qualification={education.qualification}
-                grade={education.grade}
-                location={education.location}
-                startDate={education.startDate}
-                endDate={education.enDate}
-              />
-            ))
-          }
-          
+          <div className="flex flex-col items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 p-5">
+
+              {data.education?.map((education, index) => (
+
+                <motion.div
+                  key={education.id}
+                  custom={index % 2 === 0 ? 5 : -5}
+                  initial="hidden"
+                  animate="visible"
+                  variants={variants}
+                >
+
+                  <EduCard
+                    key={education.id}
+                    schoolName={education.schoolName}
+                    program={education.program}
+                    qualification={education.qualification}
+                    grade={education.grade}
+                    location={education.location}
+                    startDate={education.startDate}
+                    endDate={education.enDate}
+                  />
+                </motion.div>
+              ))
+              }
+
             </div>
-           
+
           </div>
 
         </div>

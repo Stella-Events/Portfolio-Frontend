@@ -15,6 +15,7 @@ const VolCard = ({ projectName, role, description, skills, responsibility, locat
                         <div className=" text-2xl font-bold text-center items-center text-[#8e44ad]">{projectName}</div>
 
                         <div className="flex flex-col items-start gap-y-3">
+                            
                             <div className="text-white text-1xl font-bold text-start italic pl-3 flex flex-col gap-x-2">
                                 <div className="flex flex-row gap-x-2 items-center">
                                     <Component className="size-4" />

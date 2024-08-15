@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import K from "../../dashboard/components/constants";
 import { useEffect, useState } from "react";
 import { apiGetSkills } from "../../../services/skills";
@@ -23,6 +23,13 @@ const Overview = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false)
+  const [user] = useOutletContext();
+
+  const getPortfolioLink = () => {
+    if (!user) return "/portfolio";
+
+    return `/portfolio/${user.userName}`;
+  };
 
 
   const getData = async () => {
@@ -101,7 +108,7 @@ const Overview = () => {
 }
 <div className="pl-[900px] mb-10">
 <Link
-            to="/portfolio/:username"
+            to={getPortfolioLink()}
             className="border border-secondary text-black font-bold py-3 px-4 rounded-lg hover:bg-secondary hover:text-[#2C3E50] transition-all duration-300"
           >
 View Portfolio        
