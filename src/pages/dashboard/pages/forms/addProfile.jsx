@@ -1,205 +1,155 @@
+import { useForm } from "react-hook-form";
+import { apiAddProfile } from "../../../../services/profile"; 
+import { toast } from "react-toastify";
 import { useState } from "react";
+import Loader from "../../../../components/loader";         
+import { useNavigate } from "react-router-dom";
 
 const AddProfile = () => {
-  const [profile, setProfile] = useState({
-    profilePicture: null,
-    sex: "",
-    maritalStatus: "",
-    address: "",
-    dateOfBirth: "",
-    about: "",
-    contact: {
-      email: "",
-      phoneNumber: "",
-      linkedInProfile: ""
-    },
-    resume: "",
-    languages: "",
-    socialMediaLinks: {
-      github: "",
-      twitter: "",
-      linkedin: ""
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+
+    // Prepare FormData for file uploads and nested objects
+    const formData = new FormData();
+    Object.keys(data).forEach(key => {
+      if (data[key] instanceof File) {
+        formData.append(key, data[key]);
+      } else if (typeof data[key] === 'object') {
+        Object.keys(data[key]).forEach(subKey => {
+          formData.append(`${key}[${subKey}]`, data[key][subKey]);
+        });
+      } else {
+        formData.append(key, data[key]);
+      }
+    });
+
+    try {
+      const res = await apiAddProfile(formData);
+      toast.success(res.data.message); // Display success message
+      setTimeout(() => {
+        navigate("/dashboard/profile");
+      }, 1000);
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred"); // Display error message
+    } finally {
+      setIsSubmitting(false);
     }
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProfile({
-      ...profile,
-      [name]: value
-    });
-  };
-
-  const handleSocialMediaChange = (e) => {
-    const { name, value } = e.target;
-    setProfile({
-      ...profile,
-      socialMediaLinks: {
-        ...profile.socialMediaLinks,
-        [name]: value
-      }
-    });
-  };
-
-  const handleContactChange = (e) => {
-    const { name, value } = e.target;
-    setProfile({
-      ...profile,
-      contact: {
-        ...profile.contact,
-        [name]: value
-      }
-    });
-  };
-
-  const handleImageChange = (e) => {
-    setProfile({
-      ...profile,
-      profilePicture: e.target.files[0]
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(profile);
-    // Add your form submission logic here
   };
 
   return (
-    <div className="px-[70px] w-[680px]">
-      <h2 className="text-2xl font-bold mb-6">Add New Profile</h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="p-[100px] w-[680px]">
+      <h2 className="text-2xl font-bold mb-6 text-center">Add New Profile</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="flex flex-col">
           <label htmlFor="profilePicture" className="text-lg font-medium">Profile Picture</label>
           <input
             type="file"
-            id="profilePicture"
-            name="profilePicture"
-            onChange={handleImageChange}
+            {...register("profilePicture")}
             className="p-2 border border-gray-300 rounded"
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="about" className="text-lg font-medium">About</label>
           <textarea
-            id="about"
-            name="about"
-            value={profile.about}
-            onChange={handleChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("about", { required: "About is required" })}
             placeholder="Enter about"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.about && <p className="text-red-500">{errors.about.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="username" className="text-lg font-medium">Username</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={profile.username}
-            onChange={handleChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("username", { required: "Username is required" })}
             placeholder="Enter username"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.username && <p className="text-red-500">{errors.username.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="sex" className="text-lg font-medium">Sex</label>
           <input
             type="text"
-            id="sex"
-            name="sex"
-            value={profile.sex}
-            onChange={handleChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("sex", { required: "Sex is required" })}
             placeholder="Enter sex"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.sex && <p className="text-red-500">{errors.sex.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="maritalStatus" className="text-lg font-medium">Marital Status</label>
           <input
             type="text"
-            id="maritalStatus"
-            name="maritalStatus"
-            value={profile.maritalStatus}
-            onChange={handleChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("maritalStatus", { required: "Marital status is required" })}
             placeholder="Enter marital status"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.maritalStatus && <p className="text-red-500">{errors.maritalStatus.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="address" className="text-lg font-medium">Address</label>
           <input
             type="text"
-            id="address"
-            name="address"
-            value={profile.address}
-            onChange={handleChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("address", { required: "Address is required" })}
             placeholder="Enter address"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.address && <p className="text-red-500">{errors.address.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="dateOfBirth" className="text-lg font-medium">Date of Birth</label>
           <input
             type="date"
-            id="dateOfBirth"
-            name="dateOfBirth"
-            value={profile.dateOfBirth}
-            onChange={handleChange}
+            {...register("dateOfBirth", { required: "Date of birth is required" })}
             className="p-2 border border-gray-300 rounded"
-            required
           />
+          {errors.dateOfBirth && <p className="text-red-500">{errors.dateOfBirth.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="email" className="text-lg font-medium">Email</label>
           <input
             type="email"
-            id="email"
-            name="email"
-            value={profile.contact.email}
-            onChange={handleContactChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("contact.email", { required: "Email is required" })}
             placeholder="Enter email"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.contact?.email && <p className="text-red-500">{errors.contact.email.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="phoneNumber" className="text-lg font-medium">Phone Number</label>
           <input
             type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={profile.contact.phoneNumber}
-            onChange={handleContactChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("contact.phoneNumber", { required: "Phone number is required" })}
             placeholder="Enter phone number"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.contact?.phoneNumber && <p className="text-red-500">{errors.contact.phoneNumber.message}</p>}
         </div>
         <div className="flex flex-col">
-          <label htmlFor="linkedin" className="text-lg font-medium">LinkedIn Profile</label>
+          <label htmlFor="linkedInProfile" className="text-lg font-medium">LinkedIn Profile</label>
           <input
             type="url"
-            id="linkedin"
-            name="linkedin"
-            value={profile.contact.linkedInProfile}
-            onChange={handleContactChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("contact.linkedInProfile", { required: "LinkedIn profile is required" })}
             placeholder="Enter LinkedIn profile"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.contact?.linkedInProfile && <p className="text-red-500">{errors.contact.linkedInProfile.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="resume" className="text-lg font-medium">Resume</label>
           <input
             type="file"
-            id="resume"
-            name="resume"
+            {...register("resume")}
             className="p-2 border border-gray-300 rounded"
           />
         </div>
@@ -207,57 +157,47 @@ const AddProfile = () => {
           <label htmlFor="languages" className="text-lg font-medium">Languages</label>
           <input
             type="text"
-            id="languages"
-            name="languages"
-            value={profile.languages}
-            onChange={handleChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("languages", { required: "Languages are required" })}
             placeholder="Enter languages"
-            required
+            className="p-2 border border-gray-300 rounded"
           />
+          {errors.languages && <p className="text-red-500">{errors.languages.message}</p>}
         </div>
         <div className="flex flex-col">
           <label htmlFor="github" className="text-lg font-medium">GitHub Link</label>
           <input
             type="url"
-            id="github"
-            name="github"
-            value={profile.socialMediaLinks.github}
-            onChange={handleSocialMediaChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("socialMediaLinks.github")}
             placeholder="Enter GitHub link"
+            className="p-2 border border-gray-300 rounded"
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="twitter" className="text-lg font-medium">Twitter Link</label>
           <input
             type="url"
-            id="twitter"
-            name="twitter"
-            value={profile.socialMediaLinks.twitter}
-            onChange={handleSocialMediaChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("socialMediaLinks.twitter")}
             placeholder="Enter Twitter link"
+            className="p-2 border border-gray-300 rounded"
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="linkedin" className="text-lg font-medium">LinkedIn Link</label>
           <input
             type="url"
-            id="linkedin"
-            name="linkedin"
-            value={profile.socialMediaLinks.linkedin}
-            onChange={handleSocialMediaChange}
-            className="p-2 border border-gray-300 rounded"
+            {...register("socialMediaLinks.linkedin")}
             placeholder="Enter LinkedIn link"
+            className="p-2 border border-gray-300 rounded"
           />
         </div>
-        <button
-          type="submit"
-          className="w-full py-3 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
-        >
-          Add Profile
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            className="py-3 px-6 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
+          >
+            {isSubmitting ? <Loader /> : "Add Profile"}
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { apiAddAchievement } from "../../../../services/achievements";
 
 const AddAchievements = () => {
+  const navigate = useNavigate();
   const [achievement, setAchievement] = useState({
     awards: "",
     description: "",
@@ -8,6 +12,7 @@ const AddAchievements = () => {
     date: "",
     institutionName: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,16 +29,31 @@ const AddAchievements = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(achievement);
-    // Add your form submission logic here
+    setIsLoading(true);
+
+    const formData = new FormData();
+    for (const key in achievement) {
+      formData.append(key, achievement[key]);
+    }
+
+    try {
+      const res = await apiAddAchievement(formData);
+      toast.success(res.data.message);
+      navigate("/dashboard/achievements");
+    } catch (error) {
+      toast.error("An error occurred while adding the achievement");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="p-10 w-[1000px]">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Achievement</h2>
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto" encType="multipart/form-data">
         <div className="flex flex-col">
           <label htmlFor="awards" className="text-lg font-medium">Awards</label>
           <input
@@ -99,8 +119,9 @@ const AddAchievements = () => {
           <button
             type="submit"
             className="py-3 px-6 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
+            disabled={isLoading}
           >
-            Add Achievement
+            {isLoading ? "Adding..." : "Add Achievement"}
           </button>
         </div>
       </form>

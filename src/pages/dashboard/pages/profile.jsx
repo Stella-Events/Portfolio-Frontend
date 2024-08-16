@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PagesLayout from "../layout/pagesLayout";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, Edit3 } from "lucide-react"; // Import the Edit icon
 import dProfile from "../../../assets/images/dProfile.jpg";
+import { apiGetProfile, apiUpdateProfile } from "../../../services/profile"; 
+import Loader from "../../../components/loader"; 
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -20,6 +23,24 @@ const Profile = () => {
     linkedInLink: "https://linkedin.com/in/example",
     twitterLink: "https://twitter.com/example2",
   });
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      setIsLoading(true);
+      try {
+        const res = await apiGetProfile();
+        setProfileData(res.data);
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to fetch profile data");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   return (
     <PagesLayout
@@ -28,100 +49,112 @@ const Profile = () => {
       buttonIcon={<CirclePlus />}
       onClick={() => navigate("/dashboard/profile/add-profile")}
     >
-      <div className="flex flex-col items-center space-y-8">
-        <img
-          src={profileData.profilePicture}
-          alt="Profile"
-          className="rounded-full h-60 w-60 mb-4"
-        />
-        <div className="flex flex-col items-center">
-          <h2 className="text-3xl font-bold">CHRISTIAN GREY</h2>
-          <p className="text-gray-600 text-xl">Data Analyst | Frontend Developer</p>
-        </div>
-        <div className="flex flex-wrap justify-center w-full space-y-4 md:space-y-0 md:space-x-8">
-          <div className="bg-white p-6 shadow rounded-lg w-full md:w-auto">
-            <h3 className="text-xl font-bold mb-2">Contact Information</h3>
-            <p>
-              <span className="font-bold">Contact:</span> {profileData.contact}
-            </p>
-            <p>
-              <span className="font-bold">Languages:</span> {profileData.languages}
-            </p>
-            <p>
-              <span className="font-bold">Resume:</span>{" "}
-              <a
-                href={profileData.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
-              >
-                View Resume
-              </a>
-            </p>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="flex flex-col items-center space-y-8">
+          <div className="relative">
+            <img
+              src={profileData.profilePicture}
+              alt="Profile"
+              className="rounded-full h-60 w-60 mb-4"
+            />
+            <button
+              onClick={() => navigate("/dashboard/profile/edit/1")}
+              className="absolute top-0 right-0 bg-white rounded-full p-2 shadow"
+            >
+              <Edit3 className="w-6 h-6 text-gray-700" />
+            </button>
           </div>
-          <div className="bg-white p-6 shadow rounded-lg w-full md:w-auto">
-            <h3 className="text-xl font-bold mb-2">Social Links</h3>
-            <p>
-              <span className="font-bold">GitHub:</span>{" "}
-              <a
-                href={profileData.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
-              >
-                GitHub Profile
-              </a>
-            </p>
-            <p>
-              <span className="font-bold">LinkedIn:</span>{" "}
-              <a
-                href={profileData.linkedInLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
-              >
-                LinkedIn Profile
-              </a>
-            </p>
-            <p>
-              <span className="font-bold">Twitter:</span>{" "}
-              <a
-                href={profileData.twitterLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
-              >
-                Twitter Profile
-              </a>
-            </p>
+          <div className="flex flex-col items-center">
+            <h2 className="text-3xl font-bold">CHRISTIAN GREY</h2>
+            <p className="text-gray-600 text-xl">Data Analyst | Frontend Developer</p>
           </div>
-        </div>
-        <div className="w-full bg-white p-6 shadow rounded-lg mt-8 ">
-          <h2 className="text-2xl font-bold mb-4">Personal Information</h2>
-          <div className="flex justify-between ">
-          <div className="mr-[100px]">
+          <div className="flex flex-wrap justify-center w-full space-y-4 md:space-y-0 md:space-x-8">
+            <div className="bg-white p-6 shadow rounded-lg w-full md:w-auto">
+              <h3 className="text-xl font-bold mb-2">Contact Information</h3>
               <p>
-                <span className="font-bold">Sex:</span> {profileData.sex}
+                <span className="font-bold">Contact:</span> {profileData.contact}
               </p>
               <p>
-                <span className="font-bold">Marital Status:</span> {profileData.maritalStatus}
+                <span className="font-bold">Languages:</span> {profileData.languages}
+              </p>
+              <p>
+                <span className="font-bold">Resume:</span>{" "}
+                <a
+                  href={profileData.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  View Resume
+                </a>
               </p>
             </div>
-            <div>
+            <div className="bg-white p-6 shadow rounded-lg w-full md:w-auto">
+              <h3 className="text-xl font-bold mb-2">Social Links</h3>
               <p>
-                <span className="font-bold">Date of Birth:</span> {profileData.dateOfBirth}
+                <span className="font-bold">GitHub:</span>{" "}
+                <a
+                  href={profileData.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  GitHub Profile
+                </a>
               </p>
               <p>
-                <span className="font-bold">Address:</span> {profileData.address}
+                <span className="font-bold">LinkedIn:</span>{" "}
+                <a
+                  href={profileData.linkedInLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  LinkedIn Profile
+                </a>
+              </p>
+              <p>
+                <span className="font-bold">Twitter:</span>{" "}
+                <a
+                  href={profileData.twitterLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Twitter Profile
+                </a>
               </p>
             </div>
           </div>
+          <div className="w-full bg-white p-6 shadow rounded-lg mt-8 ">
+            <h2 className="text-2xl font-bold mb-4">Personal Information</h2>
+            <div className="flex justify-between ">
+              <div className="mr-[100px]">
+                <p>
+                  <span className="font-bold">Sex:</span> {profileData.sex}
+                </p>
+                <p>
+                  <span className="font-bold">Marital Status:</span> {profileData.maritalStatus}
+                </p>
+              </div>
+              <div>
+                <p>
+                  <span className="font-bold">Date of Birth:</span> {profileData.dateOfBirth}
+                </p>
+                <p>
+                  <span className="font-bold">Address:</span> {profileData.address}
+                </p>
+              </div>
+            </div>
           </div>
           <div>
             <h2 className="text-2xl font-bold mt-8 mb-4">About</h2>
             <p>{profileData.about}</p>
           </div>
         </div>
+      )}
     </PagesLayout>
   );
 };

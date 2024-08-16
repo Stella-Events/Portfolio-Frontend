@@ -1,4 +1,4 @@
-import { Box, Cat, FileBadge, FileCheck2, GanttChart, GraduationCap, HandHeart, Heart, Home, Linkedin, MailCheck, Medal, Newspaper, Phone, PhoneIncoming, Power, School, Settings2, SmartphoneNfc, Sparkles, Target, UserCog, UserSearch } from "lucide-react";
+import { BookAIcon, Box, Cat, FileBadge, FileCheck2, GanttChart, GraduationCap, HandHeart, Heart, Home, Linkedin, MailCheck, Medal, Newspaper, Phone, PhoneIncoming, Power, School, Settings2, SmartphoneNfc, Sparkles, Target, UserCog, UserSearch } from "lucide-react";
 import project1 from "../../../../assets/images/project1.jpg"
 import project2 from "../../../../assets/images/project2.jpg"
 import project3 from "../../../../assets/images/project3.jpg"
@@ -98,31 +98,46 @@ export default {
 
     OVERVIEW: [
         {
-            icon: <Sparkles />,
-            text: "Experiences",
-            link: "/dashboard/experiences"
-        
-        },
-        {
-            icon: <FileBadge />,
-            text: "Achievements",
-            link: "/dashboard/achievements"
+            icon: <BookAIcon />,
+            text: "Education",
+            link: "/dashboard/education"
         },
         {
             icon: <UserCog />,
             text: "Skills",
             link: "/dashboard/skills"
         },
+
         {
             icon: <Target />,
             text: "Projects",
             link: "/dashboard/projects"
         },
+
+        {
+            icon: <Sparkles />,
+            text: "Experiences",
+            link: "/dashboard/experiences"
+        
+        },
+
+        {
+            icon: <FileBadge />,
+            text: "Achievements",
+            link: "/dashboard/achievements"
+        },
+    
+        {
+            icon: <HandHeart />,
+            text: "Volunteering",
+            link: "/dashboard/volunteering"
+        },
+
         {
             icon: <SmartphoneNfc />,
             text: "Contact Details",
             link: "/dashboard/contact"
-        }
+        },
     ],
 
     EXPERIENCES: [
