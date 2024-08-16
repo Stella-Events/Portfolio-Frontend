@@ -19,16 +19,15 @@ const DashboardLayout = () => {
       }
     }, []);
 
-
     if (!token) {
         return <Navigate to="/signin" />;
     }
 
-    const getAvatar = () => {
-        if (!user) return "N/A";
-        const initials = `${firstName[0]}${lastName[0]}`;
-        return initials.toUpperCase();
-      };
+    // const getAvatar = () => {
+    //     if (!user) return "N/A";
+    //     const initials = `${firstName[0]}${lastName[0]}`;
+    //     return initials.toUpperCase();
+    //   };
 
     return (
         <div className="flex">
@@ -37,9 +36,9 @@ const DashboardLayout = () => {
             to="/dashboard/profile"
             className="ml-auto bg-pink p-4 rounded-full cursor-pointer"
           >
-            <span className="text-xl font-semibold text-white">
+            {/* <span className="text-xl font-semibold text-white">
               {getAvatar()}
-            </span>
+            </span> */}
           </Link>
             <div className="pl-[220px] w-full">
                 <Outlet  context={[user, setUser]} />

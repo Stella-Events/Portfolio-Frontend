@@ -10,7 +10,8 @@ import { useState, useEffect } from "react";
 
 const Profile = () => {
     const data = useOutletContext();
-
+    console.log("🚀 ~ PortfolioProfile ~ data:", data);
+    
     const [progress, setProgress] = useState({
         css: 0,
         html: 0,
@@ -59,7 +60,9 @@ const Profile = () => {
                     {/* P-PIC AND TEXT */}
                     <div className="flex flex-col md:flex-row pt-10 gap-y-6 md:gap-y-0 pl-5">
                         <div className="flex-shrink-0">
-                            <img src={data.userProfile.profilePicture} alt="profile picture of developer in view"
+                            <img 
+                            src={`https://savefiles.org/${data.userProfile.profilePicture}?shareable_link=327`} 
+                            alt="profile picture of developer in view"
                                 className="w-full md:w-[300px] h-auto object-contain rounded-lg" />
                         </div>
 
@@ -69,14 +72,13 @@ const Profile = () => {
                             </div>
 
                             <div className="text-white">
-                                <p className="italic text-sm md:text-base">Lorem ipsum dolor sit, amet consectetur
-                                    adipisicing elit. Facere optio voluptas autem, <br />
-                                    asperiores labore nihil pariatur repellendus.
+                                <p className="italic text-sm md:text-base">
+                                {data.userProfile.bio}
                                 </p>
                             </div>
 
                             {/* LISTED ITEMS */}
-                            <div className="flex flex-col md:flex-row justify-between gap-y-6 md:gap-y-0">
+                            <div className="flex flex-col md:flex-row justify-between gap-x-6 md:gap-y-0">
                                 <div className="flex flex-col gap-y-3">
                                     <div className="text-white flex items-center gap-3 font-bold"> <Cake className="text-[#8e44ad]" />Birthday :<div className="font-thin">{data.userProfile.dateOfBirth}</div></div>
                                     <div className="text-white flex items-center gap-3 font-bold"> <ArrowRight className="text-[#8e44ad]" />Sex :<div className="font-thin">{data.userProfile.sex}</div></div>
@@ -150,44 +152,33 @@ const Profile = () => {
                     <div className="pl-10 pt-20 gap-10 flex items-center justify-center cursor-pointer">
                         <Link
 
-                            to="/github.com"
+                            to="https://github.com"
 
-                            className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
+                            className="h-20 w-20 bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
 
                             <div>
                                 <img src={gitWhite} alt="icon-of-github-logo" className="h-14 w-14" />
                             </div>
-
-                            <span>
-                                <a className="text-white mt-7">GitHub</a>
-                            </span>
                         </Link>
 
                         <Link
 
-                            to="x.com"
+                            to="https://x.com"
 
-                            className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
+                            className="h-20 w-20 bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5 text-white">
                             <div>
                                 <img src={twitter} alt="icon-of-twitter-logo" className="h-10 w-10" />
                             </div>
-                            <span className="text-white mt-7">
-                                X
-                            </span>
                         </Link>
 
                         <Link
 
-                            to="linkedin.com"
+                            to="https://www.linkedin.com"
 
-                            className="h-20 w-[256px] bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
+                            className="h-20 w-20 bg-white/20 rounded-3xl flex flex-row justify-center items-center gap-5">
                             <div>
                                 <img src={linkedIn} alt="icon-of-github-logo" className="h-14 w-14" />
                             </div>
-
-                            <span>
-                                <a className="text-white mt-7">LinkedIn</a>
-                            </span>
                         </Link>
 
                     </div>

@@ -31,7 +31,7 @@ const Skillss = () => {
         <div className="w-full max-w-screen-lg bg-black my-10 p-8 md:p-14 rounded-2xl shadow-2xl">
           {/* FIRST TWO LINES */}
           <div className="gap-y-12">
-            <div className="flex flex-row items-center gap-x-5 pt-10" >
+            <div className="flex flex-row items-center gap-x-5" >
               <span className="font-bold text-1xl text-white pl-10 animate-pulse">S  K  I  L  L  S</span>
               <div className="h-0.5 w-32 bg-[#8e44ad]"></div>
             </div>
@@ -43,10 +43,10 @@ const Skillss = () => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-y-5 mt-12 md:mt-16">
+            <div className="flex flex-col gap-y-5 md:mt-16">
               <div className="flex justify-center">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
                   {data.skills?.map((skills, index) => (
                      <motion.div
                      key={skills.id}
