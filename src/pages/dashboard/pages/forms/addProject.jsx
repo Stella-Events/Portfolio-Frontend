@@ -1,6 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { apiAddProject } from "../../../../services/projects";
 
 const AddProject = () => {
+  const navigate = useNavigate();
   const [project, setProject] = useState({
     projectName: "",
     description: "",
@@ -8,14 +12,15 @@ const AddProject = () => {
     skills: "",
     links: "",
     nameOfInstitution: "",
-    image: null
+    image: null,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProject({
       ...project,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -23,14 +28,29 @@ const AddProject = () => {
     const file = e.target.files[0];
     setProject({
       ...project,
-      image: file
+      image: file,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(project);
-    // Add your form submission logic here
+    setIsLoading(true);
+
+    try {
+      const formData = new FormData();
+      Object.keys(project).forEach((key) => {
+        formData.append(key, project[key]);
+      });
+
+      const res = await apiAddProject(formData);
+      toast.success(res.data.message);
+      navigate("/dashboard/projects");
+    } catch (error) {
+      toast.error("An error occurred while adding the project");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -125,8 +145,9 @@ const AddProject = () => {
           <button
             type="submit"
             className="py-3 px-6 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
+            disabled={isLoading}
           >
-            Add Project
+            {isLoading ? "Adding..." : "Add Project"}
           </button>
         </div>
       </form>

@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { apiAddEducation } from "../../../../services/education";
 
 const AddEducation = () => {
+  const navigate = useNavigate();
   const [education, setEducation] = useState({
     schoolName: "",
     program: "",
@@ -10,6 +14,7 @@ const AddEducation = () => {
     startDate: "",
     endDate: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +24,19 @@ const AddEducation = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(education);
-    // Add your form submission logic here
+    setIsLoading(true);
+    try {
+      const res = await apiAddEducation(education);
+      toast.success(res.data.message);
+      navigate("/dashboard/education");
+    } catch (error) {
+      toast.error("An error occurred while adding the education");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -122,8 +136,9 @@ const AddEducation = () => {
           <button
             type="submit"
             className="py-3 px-6 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
+            disabled={isLoading}
           >
-            Add Education
+            {isLoading ? "Adding..." : "Add Education"}
           </button>
         </div>
       </form>

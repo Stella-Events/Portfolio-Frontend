@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { apiAddExperience } from "../../../../services/experiences";
 
 const AddExperience = () => {
+  const navigate = useNavigate();
   const [experience, setExperience] = useState({
     companyName: "",
     role: "",
@@ -10,6 +14,7 @@ const AddExperience = () => {
     startDate: "",
     endDate: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +24,19 @@ const AddExperience = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(experience);
-    // Add your form submission logic here
+    setIsLoading(true);
+    try {
+      const res = await apiAddExperience(experience);
+      toast.success(res.data.message);
+      navigate("/dashboard/experiences");
+    } catch (error) {
+      toast.error("An error occurred while adding the experience");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -125,8 +139,9 @@ const AddExperience = () => {
           <button
             type="submit"
             className="py-3 px-6 bg-aColor text-white text-lg font-bold rounded hover:bg-primary-dark transition-all duration-300"
+            disabled={isLoading}
           >
-            Add Experience
+            {isLoading ? "Adding..." : "Add Experience"}
           </button>
         </div>
       </form>

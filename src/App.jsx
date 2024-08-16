@@ -12,7 +12,6 @@ import Achievements from "./pages/dashboard/pages/achievements"
 import Overview from "./pages/dashboard/pages/overview"
 import AddProfile from "./pages/dashboard/pages/forms/addProfile"
 import AddSkills from "./pages/dashboard/pages/forms/addSkills"
-import Experiences from "./pages/dashboard/pages/experiences"
 import PortfolioLayout from "./pages/portfolio/layout"
 import PortfolioProfile from "./pages/portfolio/pages/profile"
 import PortfolioExperience from "./pages/portfolio/pages/experience"
@@ -33,6 +32,12 @@ import LearnMore from "./pages/dashboard/pages/learnMore"
 import { apiGetUserDetails } from "./services/preview";
 import AuthLayout from "./pages/auth/layouts/authLayout"
 import About from "./pages/landingPage/about"
+import { toast } from "react-toastify"
+import { AnimatePresence } from "framer-motion"
+import PageTransition from "./pages/portfolio/components/transition"
+import SkillEdit from "./pages/dashboard/pages/editDelete/skillEdit"
+import ProfileEdit from "./pages/dashboard/pages/editDelete/profileEdit"
+import Experiences from "./pages/dashboard/pages/experiences"
 
 
 
@@ -49,7 +54,7 @@ const router = createBrowserRouter([
 
   { path: "learnmore", element: <LearnMore /> },
 
-  {path: "about", element: <About />},
+  { path: "about", element: <About /> },
 
   {
     path: "/dashboard", element: <Dashboardlayout />,
@@ -71,6 +76,7 @@ const router = createBrowserRouter([
         path: "profile/add-profile",
         element: <AddProfile />
       },
+      { path: "/dashboard/profile/edit/:id", element: <ProfileEdit />},
 
       {
         path: "experiences",
@@ -90,6 +96,7 @@ const router = createBrowserRouter([
         path: "skills/add-skill",
         element: <AddSkills />
       },
+      { path: "/dashboard/skills/edit-skill/:id", element: <SkillEdit /> },
 
       {
         path: "projects",
@@ -140,7 +147,15 @@ const router = createBrowserRouter([
 
 
   {
-    path: "/portfolio/:username", element: <PortfolioLayout />,
+    path: "/portfolio/:username",
+    element: (
+      <AnimatePresence>
+        <PageTransition>
+          <PortfolioLayout />
+        </PageTransition>
+      </AnimatePresence>
+    ),
+
     loader: async ({ params }) => {
       const username = params.username;
       try {
@@ -153,7 +168,7 @@ const router = createBrowserRouter([
       }
     },
     children: [
-      
+
       {
         index: true,
         element: <PortfolioProfile />,

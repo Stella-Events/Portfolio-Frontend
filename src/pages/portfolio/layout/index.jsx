@@ -8,8 +8,8 @@ const PortfolioLayout = () => {
 
     return (
         <div>
-            <div className="">
-                <Sidenav username={data.username} />
+            <div>
+                <Sidenav username = {data.username}/>
                 <div className="mt-20">
                     <Outlet context={data} />
                 </div>

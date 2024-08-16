@@ -1,6 +1,6 @@
 import { apiClient } from "./config"
 
-export const AddEducation = async (payload) => {
+export const apiAddEducation = async (payload) => {
     return apiClient.post("/education", payload)
 };
 
@@ -12,10 +12,10 @@ export const apiGetEducationById = async (id) => {
     return apiClient.get(`/education/${id}`);
   };  
 
-export const UpdateEducation = async (id, payload) => {
+export const apiUpdateEducation = async (id, payload) => {
     return apiClient.patch(`/education/${id}`, payload)
 };
 
-export const DeleteEducation = async (id) => {
+export const apiDeleteEducation = async (id) => {
     return apiClient.delete(`/education/${id}`, id)
 };

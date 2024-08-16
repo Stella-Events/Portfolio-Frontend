@@ -1,6 +1,13 @@
 import React from 'react'
 
-const ProjectCard = ({ image, projectName, description, contributors, links, institution, skillone, skilltwo, skillthree, skillfour }) => {
+const ProjectCard = ({ image, projectName, description, contributors, links, 
+                    nameOfInstitution, skillone, skilltwo, skillthree, skillfour }) => {
+
+
+                        const baseURL = "https://portfolio-backend-ff91.onrender.com"; 
+                        const fullImagePath = `${baseURL}/${image}`;
+
+                        console.log(image);
     return (
         <div>
             <div className="h-60 w-[850px] bg-purple-950/80 border-6 border-orange-600 rounded-2xl cursor-pointer">
@@ -9,7 +16,7 @@ const ProjectCard = ({ image, projectName, description, contributors, links, ins
 
                     {/* IMAGE */}
                     <div className="flex justify-evenly items-center mt-3">
-                        <div><img src={image} alt="" className="h-48 w-60 border-2 border-white rounded-2xl object-cover" /></div>
+                        <div><img src={fullImagePath} alt="project Image" className="h-48 w-60 border-2 border-white rounded-2xl object-cover" /></div>
                     </div>
 
                     {/* SKILLS TABLETS PLUS ALL */}
@@ -41,7 +48,9 @@ const ProjectCard = ({ image, projectName, description, contributors, links, ins
                             <div className="text-white flex flex-row gap-x-4 mt-5 text-center">{description}</div>
                             <div className="text-white flex flex-row text-start gap-x-4 mt-2">{contributors}</div>
                             {/* <div className="text-white flex flex-row text-start gap-x-4 mt-5">{skills}</div> */}
-                            <div className="text-white font-bold text-2xl flex flex-row text-start gap-x-4 italic">{institution}</div>
+                            <div className="text-white font-bold text-2xl flex flex-row text-start gap-x-4 italic">{
+                            nameOfInstitution
+                            }</div>
                         </div>
                     </div>
                     {/* links */}
@@ -49,6 +58,9 @@ const ProjectCard = ({ image, projectName, description, contributors, links, ins
                         <div>{links}</div>
                     </div>
                 </div>
+            </div>
+            <div className="flex justify-center mt-5">
+              <div className="h-0.5 w-[850px] bg-white"></div>
             </div>
         </div>
     )
