@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import gitWhite from "../../../assets/images/gitWhite.png"
+import { LinkIcon } from 'lucide-react';
 
 const ProjectCard = ({ image, projectName, description, contributors,
-    nameOfInstitution, skills }) => {
+    nameOfInstitution, skills, links }) => {
 
     console.log(image);
     return (
@@ -40,14 +40,14 @@ const ProjectCard = ({ image, projectName, description, contributors,
                         {/* </div> */}
                     </div>
                     {/* links */}
+
                     <Link
-
-                        to="https://github.com"
-
-                        className="h-16 w-16 bg-white/20 rounded-full flex flex-row justify-center items-center gap-5 
-                        absolute top-32 right-0">
+                        to={links}
+                        className="h-10 w-10 bg-white rounded-full flex justify-center items-center 
+                        absolute bottom-4 right-4 md:bottom-6 md:right-6"
+                    >
                         <div>
-                            <img src={gitWhite} alt="icon-of-twitter-logo" className="h-10 w-10" />
+                            <LinkIcon className="h-6 w-6" />
                         </div>
                     </Link>
                 </div>

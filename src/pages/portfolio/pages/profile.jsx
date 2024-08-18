@@ -1,5 +1,5 @@
 
-import { ArrowRight, BookUser, Cake, Handshake, Mail, SmartphoneNfc } from "lucide-react"
+import { ArrowRight, BookUser, Cake, Mail, SmartphoneNfc } from "lucide-react"
 import gitWhite from "../../../assets/images/gitWhite.png"
 import twitter from "../../../assets/images/twitter.png"
 import linkedIn from "../../../assets/images/linkedIn.png"
@@ -11,23 +11,18 @@ import { useState, useEffect } from "react";
 const Profile = () => {
     const data = useOutletContext();
     console.log("🚀 ~ PortfolioProfile ~ data:", data);
-    
+
     const [progress, setProgress] = useState({
-        css: 0,
-        html: 0,
-        javascript: 0,
-        react: 0,
-        mongodb: 0,
+        english: 0,
+        twi: 0,
     });
 
     useEffect(() => {
         const timeout = setTimeout(() => {
             setProgress({
-                css: 90,
-                html: 90,
-                javascript: 85,
-                react: 90,
-                mongodb: 90,
+                english: 90,
+                twi: 90,
+
             });
         }, 500);
 
@@ -60,9 +55,9 @@ const Profile = () => {
                     {/* P-PIC AND TEXT */}
                     <div className="flex flex-col md:flex-row pt-10 gap-y-6 md:gap-y-0 pl-5">
                         <div className="flex-shrink-0">
-                            <img 
-                            src={`https://savefiles.org/${data.userProfile.profilePicture}?shareable_link=327`} 
-                            alt="profile picture of developer in view"
+                            <img
+                                src={`https://savefiles.org/${data.userProfile.profilePicture}?shareable_link=327`}
+                                alt="profile picture of developer in view"
                                 className="w-full md:w-[300px] h-auto object-contain rounded-lg" />
                         </div>
 
@@ -73,7 +68,7 @@ const Profile = () => {
 
                             <div className="text-white">
                                 <p className="italic text-sm md:text-base">
-                                {data.userProfile.bio}
+                                    {data.userProfile.bio}
                                 </p>
                             </div>
 
@@ -82,12 +77,13 @@ const Profile = () => {
                                 <div className="flex flex-col gap-y-3">
                                     <div className="text-white flex items-center gap-3 font-bold"> <Cake className="text-[#8e44ad]" />Birthday :<div className="font-thin">{data.userProfile.dateOfBirth}</div></div>
                                     <div className="text-white flex items-center gap-3 font-bold"> <ArrowRight className="text-[#8e44ad]" />Sex :<div className="font-thin">{data.userProfile.sex}</div></div>
-                                    <div className="text-white flex items-center gap-3 font-bold"> <Handshake className="text-[#8e44ad]" />Marital Status :<div className="font-thin">{data.userProfile.maritalStatus}</div></div>
+                                    <div className="text-white flex items-center gap-3 font-bold"> <Mail className="text-[#8e44ad]" />email :<div className="font-thin">{data.email}</div></div>
+                                    {/* <div className="text-white flex items-center gap-3 font-bold"> <Handshake className="text-[#8e44ad]" />Marital Status :<div className="font-thin">{data.userProfile.maritalStatus}</div></div> */}
+
                                 </div>
 
                                 <div className="flex flex-col gap-y-3">
                                     <div className="text-white flex items-center gap-3 font-bold"> <SmartphoneNfc className="text-[#8e44ad]" />Contact :<div className="font-thin">{data.userProfile.contact}</div></div>
-                                    <div className="text-white flex items-center gap-3 font-bold"> <Mail className="text-[#8e44ad]" />email :<div className="font-thin">{data.email}</div></div>
                                     <div className="text-white flex items-center gap-3 font-bold"> <BookUser className="text-[#8e44ad]" />Address:<div className="font-thin">{data.userProfile.address}</div></div>
                                 </div>
                             </div>
@@ -98,52 +94,31 @@ const Profile = () => {
                     <div className="flex flex-col md:flex-row pt-10 gap-y-6 md:gap-y-0 justify-between">
                         <div className="flex flex-col gap-y-3 w-full md:w-1/2">
                             <div className="flex flex-col">
-                                <span className="text-white text-start">CSS{progress.css}%</span>
+                                <span className="text-white text-start">English Language{progress.english}%</span>
                                 <div className="h-1 w-[388px] bg-white text-white relative">
                                     <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
-                                        style={{ width: `${progress.css}%` }}>
+                                        style={{ width: `${progress.english}%` }}>
 
                                     </div>
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-white text-start">HTML {progress.html}%</span>
+                                <span className="text-white text-start">Twi {progress.twi}%</span>
                                 <div className="h-1 w-[388px] bg-white relative">
                                     <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
-                                        style={{ width: `${progress.html}%` }}>
+                                        style={{ width: `${progress.twi}%` }}>
 
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col">
-                                <span className="text-white text-start">JavaScript {progress.javascript}%</span>
-                                <div className="h-1 w-[388px] bg-white relative">
-                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
-                                        style={{ width: `${progress.javascript}%` }}>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div className="flex flex-col">
-                                <span className="text-white text-start">REACT {progress.react}%</span>
-                                <div className="h-1 w-[388px] bg-white relative">
-                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
-                                        style={{ width: `${progress.react}%` }}></div>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-white text-start">Mongo DB {progress.mongodb}%</span>
-                                <div className="h-1 w-[388px] bg-white relative">
-                                    <div className="h-1 bg-[#8e44ad] transition-all duration-1000 ease-out"
-                                        style={{ width: `${progress.mongodb}%` }}></div>
-                                </div>
-                            </div>
                         </div>
 
                         {/* ABOUT BOX */}
-                        <div className="text-white w-1/2 h-64 border-4 bg-[#8e44ad]/20 border-white
-                    rounded-3xl flex justify-center items-center text-center pl-3 pr-3">
+                        <div
+                            className="text-white w-full md:w-1/2 max-h-64 border-4 bg-[#8e44ad]/20 border-white
+                            rounded-3xl flex justify-center items-center text-center p-3 overflow-y-auto"
+                        >
                             {data.userProfile.about}
                         </div>
                     </div>
